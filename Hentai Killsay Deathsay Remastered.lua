@@ -23,7 +23,7 @@ local Kill_String = {
 [22] = "it's not gay if you swallow the evidence S-sempai",
 [23] = "Fill my throat pussy with your semen kun",
 [24] = "It-It's not gay if you're wearing thigh highs M-master",
-[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?",
+[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?"
 }
 
 local Death_String = {
@@ -41,7 +41,7 @@ local Death_String = {
 [12] = "Impregnate me with your viral stud genes!",
 [13] = "M-my buddy yerns for your sweet dick milk",
 [14] = "Y-your meat septer has penetrated my tight boy hole",
-[15] = "M-my nipples are being tantalized",
+[15] = "M-my nipples are being tantalized"
  };
 
 
