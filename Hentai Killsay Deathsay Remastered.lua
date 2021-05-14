@@ -16,32 +16,32 @@ local Kill_String = {
 [15] = "Fill up my baby chamber with your semen kun ^-^",
 [16] = "M-master d-dont spank my petite butt so hard ahhhH~~~ you're getting me so w-wet~",
 [17] = "senpai your cock is already throbbing from my huge tits~",
-[18] = "Hey kun, Can I have some semen?"
-[19] = "M-my baby chamber is overflowing with your semen M-master"
-[20] = "Y-yes M-master right there"
-[21] = "Oh do you wanna eat? Do you wanna take a bath? Or do you want me!"
-[22] = "it's not gay if you swallow the evidence S-sempai"
-[23] = "Fill my throat pussy with your semen kun"
-[24] = "It-It's not gay if you're wearing thigh highs M-master"
-[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?"
+[18] = "Hey kun, Can I have some semen?",
+[19] = "M-my baby chamber is overflowing with your semen M-master",
+[20] = "Y-yes M-master right there",
+[21] = "Oh do you wanna eat? Do you wanna take a bath? Or do you want me!",
+[22] = "it's not gay if you swallow the evidence S-sempai",
+[23] = "Fill my throat pussy with your semen kun",
+[24] = "It-It's not gay if you're wearing thigh highs M-master",
+[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?",
 }
 
 local Death_String = {
 [1] = "hehe don't touch me there oni-chann UwU ",
 [2] = "Your cum is all over my wet clit M-master",
-[3] = "It Feels like you're pounding me with the force of a thousand suns senpai"
-[4] = "I like when Y-you fill me with your baby water S-senpai"
-[5] = "Y-yes right there S-sempai hooyah"
-[6] = "P-please keep filling my baby chamber S-sempai"
-[7] = "O-oni-chan it felt so good when you punded my bussy"
-[8] = "P-please oni-chan keep filling my baby chamber with your melty juice"
-[9] = "O-oni-chan you just one shot my baby chamber"
-[10] = "I'im nothing but a F-fucktoy slut for your M-monster fuckmeat!"
-[11] = "Dominate my ovaries with your vicious swimmers!"
-[12] = "Impregnate me with your viral stud genes!"
-[13] = "M-my buddy yerns for your sweet dick milk"
-[14] = "Y-your meat septer has penetrated my tight boy hole"
-[15] = "M-my nipples are being tantalized"
+[3] = "It Feels like you're pounding me with the force of a thousand suns senpai",
+[4] = "I like when Y-you fill me with your baby water S-senpai",
+[5] = "Y-yes right there S-sempai hooyah",
+[6] = "P-please keep filling my baby chamber S-sempai",
+[7] = "O-oni-chan it felt so good when you punded my bussy",
+[8] = "P-please oni-chan keep filling my baby chamber with your melty juice",
+[9] = "O-oni-chan you just one shot my baby chamber",
+[10] = "I'im nothing but a F-fucktoy slut for your M-monster fuckmeat!",
+[11] = "Dominate my ovaries with your vicious swimmers!",
+[12] = "Impregnate me with your viral stud genes!",
+[13] = "M-my buddy yerns for your sweet dick milk",
+[14] = "Y-your meat septer has penetrated my tight boy hole",
+[15] = "M-my nipples are being tantalized",
  };
 
 
