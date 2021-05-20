@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay%20Remastered%20(testing).lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay%20Version%20Test.txt";
-local VERSION_NUMBER = "1.1";
+local VERSION_NUMBER = "1.2";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -110,7 +110,8 @@ local Kill_String = {
 [27] = "I-I'm cumming, I'm cumming, CUM with me too!",
 [28] = "Drench me and I'll do the same!",
 [29] = "I'll swallow your sticky essence along with you~!",
-[30] = "You're my personal cum bucket!!"
+[30] = "You're my personal cum bucket!!",
+[31] + "testing laff"
 }
 
 local Death_String = {
