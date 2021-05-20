@@ -38,11 +38,11 @@ callbacks.Register( "Draw", "handleUpdates", function()
 			draw.FilledRect(i - 650 + fadein, 30, i+1 - 650 + fadein, 31);
 		end
 		draw.SetFont(updaterfont1);
-		draw.Color(82, 138, 174, 1 - fadeout);
+		draw.Color(255,150,75,255 - fadeout);
 		draw.Text(7 - 650 + fadein, 7, "RetardAlert's");
 		draw.Color(225,225,225,255 - fadeout);
 		draw.Text(7 + draw.GetTextSize("RetardAlert's ") - 650 + fadein, 7, "Script");
-		draw.Color(82, 138, 174, 1 - fadeout);
+		draw.Color(255,150,75,255 - fadeout);
 		draw.Text(7 + draw.GetTextSize("RetardAlert's Script  ") - 650 + fadein, 7, "\\");
 		spacing = draw.GetTextSize("RetardAlert's Script  \\  ");
 		draw.SetFont(updaterfont2);
@@ -78,7 +78,6 @@ callbacks.Register( "Draw", "handleUpdates", function()
 		draw.Text(7 + spacing - 650 + fadein, 9, "Successfully loaded latest version: v" .. VERSION_NUMBER);
 	end
 end)
-
 
 local Kill_String = {
 [1] = "S-Sorry onii-chan p-please d-do me harder ;w;",
