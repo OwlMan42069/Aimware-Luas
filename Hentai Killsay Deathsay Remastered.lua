@@ -41,10 +41,10 @@ callbacks.Register( "Draw", "handleUpdates", function()
 		draw.Color(255,150,75,255 - fadeout);
 		draw.Text(7 - 650 + fadein, 7, "RetardAlert's");
 		draw.Color(225,225,225,255 - fadeout);
-		draw.Text(7 + draw.GetTextSize("RetardAlert's ") - 650 + fadein, 7, "Script");
+		draw.Text(7 + draw.GetTextSize("RetardAlert's ") - 650 + fadein, 7, "Killsay");
 		draw.Color(255,150,75,255 - fadeout);
-		draw.Text(7 + draw.GetTextSize("RetardAlert's Script  ") - 650 + fadein, 7, "\\");
-		spacing = draw.GetTextSize("RetardAlert's Script  \\  ");
+		draw.Text(7 + draw.GetTextSize("RetardAlert's Killsay  ") - 650 + fadein, 7, "\\");
+		spacing = draw.GetTextSize("RetardAlert's Killsay  \\  ");
 		draw.SetFont(updaterfont2);
 		draw.Color(225,225,225,255 - fadeout);
 	end
