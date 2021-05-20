@@ -111,7 +111,7 @@ local Kill_String = {
 [28] = "Drench me and I'll do the same!",
 [29] = "I'll swallow your sticky essence along with you~!",
 [30] = "You're my personal cum bucket!!",
-[31] + "testing laff"
+[31] = "testing laff"
 }
 
 local Death_String = {
