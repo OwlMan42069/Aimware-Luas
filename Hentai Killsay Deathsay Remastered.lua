@@ -23,7 +23,12 @@ local Kill_String = {
 [22] = "it's not gay if you swallow the evidence S-sempai",
 [23] = "Fill my throat pussy with your semen kun",
 [24] = "It-It's not gay if you're wearing thigh highs M-master",
-[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?"
+[25] = "I-I need somewhere to blow my load. Can i borrow your bussy?",
+[26] = "A-ah shit... Y-your cock is big and in my ass already~?!",
+[27] = "I-I'm cumming, I'm cumming, CUM with me too!",
+[28] = "Drench me and I'll do the same!",
+[29] = "I'll swallow your sticky essence along with you~!",
+[30] = "You're my personal cum bucket!!"
 }
 
 local Death_String = {
@@ -39,9 +44,14 @@ local Death_String = {
 [10] = "I'im nothing but a F-fucktoy slut for your M-monster fuckmeat!",
 [11] = "Dominate my ovaries with your vicious swimmers!",
 [12] = "Impregnate me with your viral stud genes!",
-[13] = "M-my buddy yerns for your sweet dick milk",
+[13] = "M-my buddy yearns for your sweet dick milk",
 [14] = "Y-your meat septer has penetrated my tight boy hole",
-[15] = "M-my nipples are being tantalized"
+[15] = "M-my nipples are being tantalized",
+[16] = "Mnn FASTER... HARDER! Turn me into your femboy slut~!",
+[17] = "Penetrate me until I bust!",
+[18] = "Mmmm- soothe me, caress me, Fuck me, breed me!",
+[19] = "Probe your thick, wet, throbbing cock deeper and deeper into my boipussy~!!",
+[20] = "I'm your personal cum bucket!!"
  };
 
 
@@ -62,12 +72,12 @@ if ( Event:GetName() == 'player_death' ) then
 
   if ( INDEX_Attacker == ME and INDEX_Victim ~= ME ) then
 
-      random = math.random (1, 25)
+      random = math.random (1, 30)
       client.ChatSay( ' ' .. tostring( Kill_String[random]));
 
   elseif ( INDEX_Victim == ME and INDEX_Attacker ~= ME ) then
 
-      random = math.random (1, 15)
+      random = math.random (1, 20)
       client.ChatSay( ' ' .. tostring( Death_String[random]));
 
   end
