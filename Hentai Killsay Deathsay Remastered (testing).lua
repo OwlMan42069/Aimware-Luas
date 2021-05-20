@@ -1,5 +1,5 @@
 local SCRIPT_FILE_NAME = GetScriptName();
-local SCRIPT_FILE_ADDR = "Will be filled in! OwO";
+local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay%20Remastered%20(testing).lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay%20Version%20Test.txt";
 local VERSION_NUMBER = "1.1";
 local version_check_done = false;
