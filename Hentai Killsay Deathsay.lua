@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.5";
+local VERSION_NUMBER = "1.6";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -145,7 +145,7 @@ local Death_String = {
 [10] = "I'im nothing but a F-fucktoy slut for your M-monster fuckmeat!",
 [11] = "Dominate my ovaries with your vicious swimmers!",
 [12] = "Impregnate me with your viral stud genes!",
-[13] = "M-my buddy yearns for your sweet dick milk",
+[13] = "M-my body yearns for your sweet dick milk",
 [14] = "Y-your meat septer has penetrated my tight boy hole",
 [15] = "M-my nipples are being tantalized",
 [16] = "Mnn FASTER... HARDER! Turn me into your femboy slut~!",
