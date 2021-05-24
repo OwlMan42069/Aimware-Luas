@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.3";
+local VERSION_NUMBER = "1.4";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -120,7 +120,7 @@ local Kill_String = {
 [38] = "Ahhhh... It's like a dream come true... I get to stick my dick inside Tatsuki Chan's ass...!",
 [39] = "This is the cock block police! Hold it right there!",
 [40] = "Y'you'll break M-my womb M-master",
-[41] = "Ohoo, getting creampied made you cum? What a lewd bitch you are!".
+[41] = "Ohoo, getting creampied made you cum? What a lewd bitch you are!",
 [42] = "A-aren't you guys those transfer stdents from canada? W-what are you doing here?",
 [43] = "You're looking at porn when you could be using your little sister instead!",
 [44] = "Umm... I don't wanna sound rude, but have you had a bath? Your panties look a bit yellow...",
