@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.2";
+local VERSION_NUMBER = "1.3";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -109,7 +109,27 @@ local Kill_String = {
 [27] = "I-I'm cumming, I'm cumming, CUM with me too!",
 [28] = "Drench me and I'll do the same!",
 [29] = "I'll swallow your sticky essence along with you~!",
-[30] = "You're my personal cum bucket!!"
+[30] = "You're my personal cum bucket!!",
+[31] = "B-baka please let me be your femboy sissy cum slut",
+[32] = "That's a penis UwU you towd me you wewe a giww!!",
+[33] = "You are cordially invited to fuck my ass!",
+[34] = "Your resistance only makes my penis harder!",
+[35] = "Grab them, squeeze them, pinch them, pull them, lick them, bite them, suck them!",
+[36] = "It feels like his dick is sliding into a slimy pile of macaroni!",
+[37] = "Dum, you naughty cock! Do it! Do it! DO IT!!!",
+[38] = "Ahhhh... It's like a dream come true... I get to stick my dick inside Tatsuki Chan's ass...!",
+[39] = "This is the cock block police! Hold it right there!",
+[40] = "Y'you'll break M-my womb M-master",
+[41] = "Ohoo, getting creampied made you cum? What a lewd bitch you are!".
+[42] = "A-aren't you guys those transfer stdents from canada? W-what are you doing here?",
+[43] = "You're looking at porn when you could be using your little sister instead!",
+[44] = "Umm... I don't wanna sound rude, but have you had a bath? Your panties look a bit yellow...",
+[45] = "H-hey, hey S-sempai... W-wanna cuddle? UwU",
+[46] = "F-fuck my bussy M-master!",
+[47] = "Oh! How slutty... I'll see her nip ples!!",
+[48] = "A little more! Slouch over!",
+[49] = "Papa you liar! How could you say that while having such a HUGE erection.",
+[50] = "Trick or Treat! Give us some semeu!"
 }
 
 local Death_String = {
@@ -132,7 +152,17 @@ local Death_String = {
 [17] = "Penetrate me until I bust!",
 [18] = "Mmmm- soothe me, caress me, Fuck me, breed me!",
 [19] = "Probe your thick, wet, throbbing cock deeper and deeper into my boipussy~!!",
-[20] = "I'm your personal cum bucket!!"
+[20] = "I'm your personal cum bucket!!",
+[21] = "Hya! Not my ears! Ah... It tickles! Ah!",
+[22] = "Can you really blame me for getting a boner after seeing that?",
+[23] = "The two of us will cover my sis with our cum!",
+[24] = "Kouta... I can't believe how BIG his... Wait! Forget about that!! Is Nyuu-chan really giving him a Tit-Fuck!?",
+[25] = "O-onii-chan lets have children. <3",
+[26] = "This... This is almost like... like somehow I'm the one raping him!",
+[27] = "I'm coming fwom you fwuking my asshole mmyyy!",
+[28] = "Boys just can't consider themselves an adult... Until they've had a chance to cum with a girl's ampit.",
+[29] = "P-please be gentle, Goku-Senpai!",
+[30] = "We're both gonna fuck your pussy at the same time!"
  };
 
 
@@ -153,12 +183,12 @@ if ( Event:GetName() == 'player_death' ) then
 
   if ( INDEX_Attacker == ME and INDEX_Victim ~= ME ) then
 
-      random = math.random (1, 30)
+      random = math.random (1, 50)
       client.ChatSay( ' ' .. tostring( Kill_String[random]));
 
   elseif ( INDEX_Victim == ME and INDEX_Attacker ~= ME ) then
 
-      random = math.random (1, 20)
+      random = math.random (1, 30)
       client.ChatSay( ' ' .. tostring( Death_String[random]));
 
   end
