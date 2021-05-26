@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.63";
+local VERSION_NUMBER = "1.64";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -34,15 +34,15 @@ callbacks.Register( "Draw", "handleUpdates", function()
 			if alpha < 0 then alpha = 0 end
 			draw.Color(15,15,15,alpha);
 			draw.FilledRect(i - 650 + fadein, 0, i+1 - 650 + fadein, 30);
-			draw.Color(255, 150, 75,alpha);
+			draw.Color(0, 180, 255,alpha);
 			draw.FilledRect(i - 650 + fadein, 30, i+1 - 650 + fadein, 31);
 		end
 		draw.SetFont(updaterfont1);
-		draw.Color(255,150,75,255 - fadeout);
+		draw.Color(0,180,255,255 - fadeout);
 		draw.Text(7 - 650 + fadein, 7, "RetardAlert's");
 		draw.Color(225,225,225,255 - fadeout);
 		draw.Text(7 + draw.GetTextSize("RetardAlert's ") - 650 + fadein, 7, "Killsay");
-		draw.Color(255,150,75,255 - fadeout);
+		draw.Color(0,180,255,255 - fadeout);
 		draw.Text(7 + draw.GetTextSize("RetardAlert's Killsay  ") - 650 + fadein, 7, "\\");
 		spacing = draw.GetTextSize("RetardAlert's Killsay  \\  ");
 		draw.SetFont(updaterfont2);
