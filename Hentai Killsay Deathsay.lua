@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.6";
+local VERSION_NUMBER = "1.7";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -127,13 +127,13 @@ local Kill_String = {
 [45] = "H-hey, hey S-sempai... W-wanna cuddle? UwU",
 [46] = "F-fuck my bussy M-master!",
 [47] = "Hey, who wants a piece of this plump 19-year-old boy-pussy? Single file, boys, come get it while it's hot!",
-[48] = "Kouji-Kun, if you keep thrusting that hard, my boobs will fall off!",
+[48] = "M-master, if you keep thrusting that hard, my boobs will fall off!",
 [49] = "Papa you liar! How could you say that while having such a HUGE erection.",
 [50] = "I-I just wanna borrow y-your dick..."
 }
 
 local Death_String = {
-[1] = "hehe don't touch me there oni-chann UwU ",
+[1] = "Hehe don't touch me there oni-chann UwU",
 [2] = "Your cum is all over my wet clit M-master",
 [3] = "It Feels like you're pounding me with the force of a thousand suns senpai",
 [4] = "I like when Y-you fill me with your baby water S-senpai",
@@ -142,7 +142,7 @@ local Death_String = {
 [7] = "O-oni-chan it felt so good when you punded my bussy",
 [8] = "P-please oni-chan keep filling my baby chamber with your melty juice",
 [9] = "O-oni-chan you just one shot my baby chamber",
-[10] = "I'im nothing but a F-fucktoy slut for your M-monster fuckmeat!",
+[10] = "I-Im nothing but a F-fucktoy slut for your M-monster fuckmeat!",
 [11] = "Dominate my ovaries with your vicious swimmers!",
 [12] = "Impregnate me with your viral stud genes!",
 [13] = "M-my body yearns for your sweet dick milk",
@@ -161,7 +161,7 @@ local Death_String = {
 [26] = "This... This is almost like... like somehow I'm the one raping him!",
 [27] = "I'm coming fwom you fwuking my asshole mmyyy!",
 [28] = "Boys just can't consider themselves an adult... Until they've had a chance to cum with a girl's ampit.",
-[29] = "P-please be gentle, Goku-Senpai!",
+[29] = "P-please be gentle, S-senpai!",
 [30] = "We're both gonna fuck your pussy at the same time!"
  };
 
