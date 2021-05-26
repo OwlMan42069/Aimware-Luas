@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.7";
+local VERSION_NUMBER = "1.62";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -136,7 +136,7 @@ local Death_String = {
 [1] = "Hehe don't touch me there oni-chann UwU",
 [2] = "Your cum is all over my wet clit M-master",
 [3] = "It Feels like you're pounding me with the force of a thousand suns senpai",
-[4] = "I like when Y-you fill me with your baby water S-senpai",
+[4] = "I like when y-you fill me with your baby water S-senpai",
 [5] = "Y-yes right there S-sempai hooyah",
 [6] = "P-please keep filling my baby chamber S-sempai",
 [7] = "O-oni-chan it felt so good when you punded my bussy",
