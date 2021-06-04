@@ -1,7 +1,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.64";
+local VERSION_NUMBER = "1.65";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -129,7 +129,12 @@ local Kill_String = {
 [47] = "Hey, who wants a piece of this plump 19-year-old boy-pussy? Single file, boys, come get it while it's hot!",
 [48] = "M-Master, if you keep thrusting that hard, my boobs will fall off!",
 [49] = "Papa you liar! How could you say that while having such a HUGE erection.",
-[50] = "I-I just wanna borrow y-your dick..."
+[50] = "I-I just wanna borrow y-your dick...",
+[51] = "If a man inserts his hose into another man's black hole, can they make a baby?",
+[52] = "When do you wanna meet up again? I've really taken a liking to your dick! (,,◠∇◠) I want you and only you to slam it into my pussy every day! (≧∇≦)",
+[53] = "All I did was crossplay 'cause I felt like it might be fun... But now I'm just a little girl that cums from big dicks!",
+[54] = "Geez! What the fuck!? My juniors are always bullying me... And I keep getting fingers stuck up mu butt!",
+[55] = "I-I had a itch down there... and I-I just needed something to-to stick up in there!"
 }
 
 local Death_String = {
@@ -162,7 +167,12 @@ local Death_String = {
 [27] = "I'm coming fwom you fwuking my asshole mmyyy!",
 [28] = "Boys just can't consider themselves an adult... Until they've had a chance to cum with a girl's ampit.",
 [29] = "P-Please be gentle, S-Senpai!",
-[30] = "We're both gonna fuck your pussy at the same time!"
+[30] = "We're both gonna fuck your pussy at the same time!",
+[31] = "D-Don't get the wrong idea!! I didn't give up my viginity to you because I like you or anything!!",
+[32] = "Let me taste your futa cock with my pussy~",
+[33] = "You're impregnating my balls!?",
+[34] = "If you weren't a pervert, you wouldn't be getting off on having a girl do you in the butt, would you?",
+[35] = "Well, well... What a cutie you are! I will claim your virginity!"
  };
 
 
@@ -183,12 +193,12 @@ if ( Event:GetName() == 'player_death' ) then
 
   if ( INDEX_Attacker == ME and INDEX_Victim ~= ME ) then
 
-      random = math.random (1, 50)
+      random = math.random (1, 55)
       client.ChatSay( ' ' .. tostring( Kill_String[random]));
 
   elseif ( INDEX_Victim == ME and INDEX_Attacker ~= ME ) then
 
-      random = math.random (1, 30)
+      random = math.random (1, 35)
       client.ChatSay( ' ' .. tostring( Death_String[random]));
 
   end
