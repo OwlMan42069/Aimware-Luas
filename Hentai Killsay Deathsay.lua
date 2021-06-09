@@ -1,7 +1,8 @@
+--------Auto Update--------
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "1.65";
+local VERSION_NUMBER = "1.70";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -79,6 +80,60 @@ callbacks.Register( "Draw", "handleUpdates", function()
 	end
 end)
 
+--------GUI Stuff--------
+local ref = gui.Reference("Misc", "Enhancement", "Appearance")
+local clantag = gui.Checkbox(ref, "clantag", "Hentai Clantag", false);
+clantag:SetDescription("Enables Animated Hentai Clantag.");
+
+--------Clantag Animation--------
+local animation = {
+    "                  ",
+    "S                 ",
+    "S^                ",
+    "Su                ",
+    "Su|               ",
+    "Su                ",
+    "Sus               ",
+    "Suss              ",
+    "Suss(>ω<)         ",
+    "Sussy             ",
+    "Sussy |           ",
+    "Sussy             ",
+    "Sussy B           ",
+    "Sussy B@          ",
+    "Sussy Ba          ",
+    "Sussy Ba(>ω<)     ",
+    "Sussy Bak         ",
+    "Sussy Baka        ",
+    "Sussy Baka|       ",
+    "Sussy Baka        ",
+    "Sussy Baka|       ",
+    "Sussy Baka        ",
+    "Sussy Baka|       ",
+    "Sussy Baka        ",
+    "Sussy Bak         ",
+    "Sussy Ba^         ",
+    "Sussy Ba          ",
+    "Sussy B@          ",
+    "Sussy B           ",
+    "Sussy |           ",
+    "Sussy             ",
+    "Sussy |           ",
+    "Sussy             ",
+    "Sussy|            ",
+    "Sussy             ",
+    "Suss(>ω<)         ",
+    "Suss              ",
+    "Sus|              ",
+    "Sus               ",
+    "Su                ",
+    "S^                ",
+    "S|                ",
+    "S                 ",
+    "|                 "
+}
+
+--------Chat Messages--------
 local Kill_String = {
 [1] = "S-Sorry onii-chan p-please d-do me harder ;w;",
 [2] = "Y-You got me all wet now Senpai!",
@@ -134,7 +189,12 @@ local Kill_String = {
 [52] = "When do you wanna meet up again? I've really taken a liking to your dick! (,,◠∇◠) I want you and only you to slam it into my pussy every day! (≧∇≦)",
 [53] = "All I did was crossplay 'cause I felt like it might be fun... But now I'm just a little girl that cums from big dicks!",
 [54] = "Geez! What the fuck!? My juniors are always bullying me... And I keep getting fingers stuck up mu butt!",
-[55] = "I-I had a itch down there... and I-I just needed something to-to stick up in there!"
+[55] = "I-I had a itch down there... and I-I just needed something to-to stick up in there!",
+[56] = "D-Don't get the wrong idea!!! I don't w-want you to fuck my b-bussy because I l-love you or anything! d-definitely not!",
+[57] = "A-Alright then! Today my cock's an AK-47 with infinite ammo!",
+[58] = "I-I know I said you could be as rough as you want... But surprise fisting wasn't what I had in mind!!",
+[59] = "W-Why is it that lately... Y-You haven't been playing with my ass!!?",
+[60] = "You have some tasty-looking panties there..."
 }
 
 local Death_String = {
@@ -172,10 +232,62 @@ local Death_String = {
 [32] = "Let me taste your futa cock with my pussy~",
 [33] = "You're impregnating my balls!?",
 [34] = "If you weren't a pervert, you wouldn't be getting off on having a girl do you in the butt, would you?",
-[35] = "Well, well... What a cutie you are! I will claim your virginity!"
+[35] = "Well, well... What a cutie you are! I will claim your virginity!",
+[36] = "You're impregnating my balls?!",
+[37] = "Do me like the girls in your manga!!",
+[38] = "When everyone's gone home for the day and the class-room's empty you have no choice but to expose yourself and jerk off, right?",
+[39] = "Oh, yeahh! You wanna fuck?",
+[40] = "I'm getting pissed off and hormy right now!"
  };
 
+--------Draw Image--------
+local function OnUnload()
+	client.Command("toggleconsole", true);
+	client.Command("echo \"⠄⠄⠄⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄\"", true);
+	client.Command("echo \" ⠄⠄⠄⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄\"", true);
+	client.Command("echo \"⠄⠄⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄\"", true);
+	client.Command("echo \"⠄⠄⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄\"", true);
+	client.Command("echo \"⠄⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰\"", true);
+	client.Command("echo \"⠄⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤\"", true);
+	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗\"", true);
+	client.Command("echo \"⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠄\"", true);
+	client.Command("echo \"⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠄\"", true);
+	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃⠄\"", true);
+	client.Command("echo \"⠄⠘⣿⣿⣿⣿⣿⣿⣿⣿⠄⣴⣿⣶⣄⠄⣴⣶⠄⢀⣾⣿⣿⣿⣿⣿⣿⠃⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⠄⣿⣿⡀⣾⣿⣿⣿⣿⣛⠛⠁⠄⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠄⠄⠈⠛⢿⣿⣿⣿⠁⠞⢿⣿⣿⡄⢿⣿⡇⣸⣿⣿⠿⠛⠁⠄⠄⠄⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠄⠄⠄⠄⠄⠉⠻⣿⣿⣾⣦⡙⠻⣷⣾⣿⠃⠿⠋⠁⠄⠄⠄⠄⠄⢀⣠⣴\"", true);
+	client.Command("echo \"⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿\"", true);
+	set_clantag("", "");
+end
 
+--------Hentai Clantag--------
+local clantagset = 0;
+clantag:SetDisabled(tradition);
+
+ffi.cdef[[
+    typedef int(__fastcall* clantag_t)(const char*, const char*);
+]]
+local fn_change_clantag = mem.FindPattern("engine.dll", "53 56 57 8B DA 8B F9 FF 15")
+local set_clantag = ffi.cast("clantag_t", fn_change_clantag)
+
+local function Clantag()
+	if clantag:GetValue() == true then
+		local curtime = math.floor(globals.CurTime() * 2.3);
+    	if old_time ~= curtime then
+    	    set_clantag(animation[curtime % #animation+1], animation[curtime % #animation+1]);
+    	end
+    	old_time = curtime;
+		        clantagset = 1;
+	else
+		if clantagset == 1 then
+            clantagset = 0;
+            set_clantag("", "");
+        end
+	end
+end
+
+--------Hentai Killsay Deathsay--------
 function CHAT_KillSay( Event )
 
 if ( Event:GetName() == 'player_death' ) then
@@ -193,12 +305,12 @@ if ( Event:GetName() == 'player_death' ) then
 
   if ( INDEX_Attacker == ME and INDEX_Victim ~= ME ) then
 
-      random = math.random (1, 55)
+      random = math.random (1, 60)
       client.ChatSay( ' ' .. tostring( Kill_String[random]));
 
   elseif ( INDEX_Victim == ME and INDEX_Attacker ~= ME ) then
 
-      random = math.random (1, 35)
+      random = math.random (1, 40)
       client.ChatSay( ' ' .. tostring( Death_String[random]));
 
   end
@@ -207,6 +319,8 @@ end
 
 end
 
+--------Lua Callbacks--------
 client.AllowListener( 'player_death' );
-
 callbacks.Register( 'FireGameEvent', 'AWKS', CHAT_KillSay );
+callbacks.Register( "Draw", Clantag);
+callbacks.Register( "Unload", OnUnload);
