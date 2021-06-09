@@ -4,6 +4,5 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Auto Update
   * 60 Hentai Kill Strings
   * 40 Hentai Death Strings
-  * Animated Hentai Clantag
-  * Prints Ahegao face to console when you unload the Lua
+  * Animated Hentai Clantag (Optional)
   
