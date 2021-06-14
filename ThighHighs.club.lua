@@ -82,7 +82,7 @@ end)
 
 --------GUI Stuff--------
 local misc_ref = gui.Reference("Misc");
-local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club ")); .. VERSION_NUMBER));
+local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club " .. VERSION_NUMBER));
 local misc_left = gui.Groupbox(tab, "Killsays / Deathsays", 10, 15, 290, 400);
 local misc_left2 = gui.Groupbox(tab, "Grenade Throwsay", 10, 400, 290, 400);
 local misc_right = gui.Groupbox(tab, "Clantags", 305, 15, 325, 400);
