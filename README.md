@@ -26,3 +26,6 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Laff Mode (Enabled by default)
   
   Credits for the Apologetic Killsay & Force Crosshair go to the authors I cannot find :D
+
+[No More Startup Music](https://aimware.net/forum/thread/152562)
+* Disables main menu music when you launch new accounts! (Make sure to set the Lua as autorun.)
