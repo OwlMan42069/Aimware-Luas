@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.10";
+local VERSION_NUMBER = "2.11";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -83,10 +83,10 @@ end)
 --------GUI Stuff--------
 local misc_ref = gui.Reference("Misc");
 local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club v" .. VERSION_NUMBER));
-local misc_left = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 290, 400);
-local misc_left2= gui.Groupbox(tab, "Clantags", 10, 160, 290, 400);
-local misc_right = gui.Groupbox(tab, "Grenade Throwsay", 305, 15, 325, 400);
-local misc_right2 = gui.Groupbox(tab, "Misc", 305, 160, 325, 400);
+local misc_left = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 310, 400);
+local misc_left2= gui.Groupbox(tab, "Clantags", 10, 160, 310, 400);
+local misc_left3 = gui.Groupbox(tab, "Grenade Throwsay", 10, 305, 310, 400);
+local misc_right = gui.Groupbox(tab, "Misc", 325, 15, 305, 400);
 
 local enable_killsays = gui.Checkbox(misc_left, "enable.killsays", "Enable Killsay Deathsay", true)
 local killsay_mode = gui.Combobox( misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags")
@@ -94,20 +94,22 @@ local killsay_mode = gui.Combobox( misc_left, "killsay.mode", "Select Killsay Mo
 local enable_clantags = gui.Checkbox(misc_left2, "enable.clantags", "Enable Premade Clantags", false)
 local clantag_mode = gui.Combobox( misc_left2, "clantag.mode", "Select clantag Mode", "UwU Rawr xD!", "Sussy Baka", "Sorry Not Sorry", "EZFrags.co.uk")
 
-local enable_throwsay = gui.Checkbox(misc_right, "enable.throwsay", "Enable Grenade Throwsay", false)
-local grenade_throwsay = gui.Multibox( misc_right, "Grenade Throwsay")
+local enable_throwsay = gui.Checkbox(misc_left3, "enable.throwsay", "Enable Grenade Throwsay", false)
+local grenade_throwsay = gui.Multibox( misc_left3, "Grenade Throwsay")
 local enable_hegrenade = gui.Checkbox( grenade_throwsay, "enable.hegrenade", "HE Grenade", true)
 local enable_flashbang = gui.Checkbox( grenade_throwsay, "enable.flashbang", "Flashbang", true)
 local enable_smokegrenade = gui.Checkbox( grenade_throwsay, "enable.smokegrenade", "Smoke", true)
 local enable_molotov = gui.Checkbox( grenade_throwsay, "senable.molotov", "Molotov/Incendiary", true)
 
-local EngineRadar = gui.Checkbox(misc_right2, "engineradar", "Engine Radar", true)
-local ForceCrosshair = gui.Checkbox(misc_right2, "forcecrosshair", "Force Crosshair", true)
-local laffmode = gui.Checkbox(misc_right2, "laffmode", "Laff Mode", true)
+local EngineRadar = gui.Checkbox(misc_right, "engineradar", "Engine Radar", true)
+local ForceCrosshair = gui.Checkbox(misc_right, "forcecrosshair", "Force Crosshair", true)
+local laffmode = gui.Checkbox(misc_right, "laffmode", "Laff Mode", true)
+local copy_chat = gui.Checkbox(misc_right, "chat.copy", "Copy Chat Messages", false)
 
 EngineRadar:SetDescription("Display enemies on your in-game radar.")
 ForceCrosshair:SetDescription("Display your in-game crosshair while holding snipers.")
 laffmode:SetDescription("Replaces lol with laff in chat :laff:")
+copy_chat:SetDescription("Repeats player messages.")
 
 --------Hentai Clantag Animation--------
 local hentai_animation = {
@@ -343,6 +345,16 @@ callbacks.Register( "SendStringCmd", function( cmd )
   end
 
 end)
+
+--------Copy Chat Messages--------
+local function CopyMessages( msg )    
+  if msg:GetID() == 6 and copy_chat:GetValue() == true then
+      local index = msg:GetInt( 1 );
+      local message = msg:GetString( 4, 1 );
+      local name = client.GetPlayerNameByIndex( index );
+client.ChatSay(message);
+  end    
+end
 
 --------Grenade Throwsay--------
 local hegrenade_phrases = {
@@ -873,6 +885,7 @@ callbacks.Register( "Draw", Baka_Clantag);
 callbacks.Register( "Draw", Apologetic_Clantag);
 callbacks.Register( "Draw", EZfrags_Clantag);
 callbacks.Register( "Draw", UnlockInventory);
+callbacks.Register( "DispatchUserMessage", "UserMessage", CopyMessages );
 callbacks.Register('FireGameEvent', hegrenade_throwsay)
 callbacks.Register('FireGameEvent', flashbang_throwsay)
 callbacks.Register('FireGameEvent', molotov_throwsay)
