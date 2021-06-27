@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.11";
+local VERSION_NUMBER = "2.12";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -92,7 +92,7 @@ local enable_killsays = gui.Checkbox(misc_left, "enable.killsays", "Enable Kills
 local killsay_mode = gui.Combobox( misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags")
 
 local enable_clantags = gui.Checkbox(misc_left2, "enable.clantags", "Enable Premade Clantags", false)
-local clantag_mode = gui.Combobox( misc_left2, "clantag.mode", "Select clantag Mode", "UwU Rawr xD!", "Sussy Baka", "Sorry Not Sorry", "EZFrags.co.uk")
+local clantag_mode = gui.Combobox( misc_left2, "clantag.mode", "Select Clantag Mode", "UwU Rawr xD!", "Sussy Baka", "Sorry Not Sorry", "EZFrags.co.uk")
 
 local enable_throwsay = gui.Checkbox(misc_left3, "enable.throwsay", "Enable Grenade Throwsay", false)
 local grenade_throwsay = gui.Multibox( misc_left3, "Grenade Throwsay")
@@ -145,50 +145,50 @@ local hentai_animation = {
 
 --------Baka Clantag Animation--------
 local baka_animation = {
-    "                  ",
-    "S                 ",
-    "S^                ",
-    "Su                ",
-    "Su|               ",
-    "Su                ",
-    "Sus               ",
-    "Suss              ",
-    "Suss(>ω<)         ",
-    "Sussy             ",
-    "Sussy |           ",
-    "Sussy             ",
-    "Sussy B           ",
-    "Sussy B@          ",
-    "Sussy Ba          ",
-    "Sussy Ba(>ω<)     ",
-    "Sussy Bak         ",
-    "Sussy Baka        ",
-    "Sussy Baka|       ",
-    "Sussy Baka        ",
-    "Sussy Baka|       ",
-    "Sussy Baka        ",
-    "Sussy Baka|       ",
-    "Sussy Baka        ",
-    "Sussy Bak         ",
-    "Sussy Ba^         ",
-    "Sussy Ba          ",
-    "Sussy B@          ",
-    "Sussy B           ",
-    "Sussy |           ",
-    "Sussy             ",
-    "Sussy |           ",
-    "Sussy             ",
-    "Sussy|            ",
-    "Sussy             ",
-    "Suss(>ω<)         ",
-    "Suss              ",
-    "Sus|              ",
-    "Sus               ",
-    "Su                ",
-    "S^                ",
-    "S|                ",
-    "S                 ",
-    "|                 "
+  "                  ",
+  "S                 ",
+  "S^                ",
+  "Su                ",
+  "Su|               ",
+  "Su                ",
+  "Sus               ",
+  "Suss              ",
+  "Suss(>ω<)         ",
+  "Sussy             ",
+  "Sussy |           ",
+  "Sussy             ",
+  "Sussy B           ",
+  "Sussy B@          ",
+  "Sussy Ba          ",
+  "Sussy Ba(>ω<)     ",
+  "Sussy Bak         ",
+  "Sussy Baka        ",
+  "Sussy Baka|       ",
+  "Sussy Baka        ",
+  "Sussy Baka|       ",
+  "Sussy Baka        ",
+  "Sussy Baka|       ",
+  "Sussy Baka        ",
+  "Sussy Bak         ",
+  "Sussy Ba^         ",
+  "Sussy Ba          ",
+  "Sussy B@          ",
+  "Sussy B           ",
+  "Sussy |           ",
+  "Sussy             ",
+  "Sussy |           ",
+  "Sussy             ",
+  "Sussy|            ",
+  "Sussy             ",
+  "Suss(>ω<)         ",
+  "Suss              ",
+  "Sus|              ",
+  "Sus               ",
+  "Su                ",
+  "S^                ",
+  "S|                ",
+  "S                 ",
+  "|                 "
 }
 
 --------Apologetic Clantag Animation--------
@@ -269,27 +269,6 @@ local ezfrags_animation = {
   "E                 ",
   "                  "
 }
-
---------Draw Image--------
-local function OnUnload()
-	client.Command("toggleconsole", true);
-	client.Command("echo \"⠄⠄⠄⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄\"", true);
-	client.Command("echo \" ⠄⠄⠄⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄\"", true);
-	client.Command("echo \"⠄⠄⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄\"", true);
-	client.Command("echo \"⠄⠄⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄\"", true);
-	client.Command("echo \"⠄⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰\"", true);
-	client.Command("echo \"⠄⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤\"", true);
-	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗\"", true);
-	client.Command("echo \"⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠄\"", true);
-	client.Command("echo \"⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠄\"", true);
-	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃⠄\"", true);
-	client.Command("echo \"⠄⠘⣿⣿⣿⣿⣿⣿⣿⣿⠄⣴⣿⣶⣄⠄⣴⣶⠄⢀⣾⣿⣿⣿⣿⣿⣿⠃⠄⠄\"", true);
-	client.Command("echo \"⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⠄⣿⣿⡀⣾⣿⣿⣿⣿⣛⠛⠁⠄⠄⠄\"", true);
-	client.Command("echo \"⠄⠄⠄⠄⠈⠛⢿⣿⣿⣿⠁⠞⢿⣿⣿⡄⢿⣿⡇⣸⣿⣿⠿⠛⠁⠄⠄⠄⠄⠄\"", true);
-	client.Command("echo \"⠄⠄⠄⠄⠄⠄⠄⠉⠻⣿⣿⣾⣦⡙⠻⣷⣾⣿⠃⠿⠋⠁⠄⠄⠄⠄⠄⢀⣠⣴\"", true);
-	client.Command("echo \"⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿\"", true);
-	set_clantag("", "");
-end
 
 --------Anti AFK + No Startup Music--------
 	client.Command("+right", true);
@@ -470,7 +449,7 @@ local function Hentai_Clantag()
     	    set_clantag(hentai_animation[curtime % #hentai_animation+1], hentai_animation[curtime % #hentai_animation+1]);
     	end
     	old_time = curtime;
-		        clantagset = 1;
+		clantagset = 1;
 	else
 		if clantagset == 1 then
             clantagset = 0;
@@ -481,7 +460,6 @@ end
 
 --------Sussy Baka Clantag--------
 local clantagset = 0;
-clantag_mode:SetDisabled(tradition);
 
 local function Baka_Clantag()
 	if enable_clantags:GetValue() == true and clantag_mode:GetValue() == 1 then
@@ -501,7 +479,6 @@ end
 
 --------Apologetic Clantag--------
 local clantagset = 0;
-clantag_mode:SetDisabled(tradition);
 
 local function Apologetic_Clantag()
 	if enable_clantags:GetValue() == true and clantag_mode:GetValue() == 2 then
@@ -521,7 +498,6 @@ end
 
 --------EZfrags Clantag--------
 local clantagset = 0;
-clantag_mode:SetDisabled(tradition);
 
 local function EZfrags_Clantag()
 	if enable_clantags:GetValue() == true and clantag_mode:GetValue() == 3 then
@@ -870,6 +846,27 @@ local function ezfrags_KillSay( Event )
 
 end
 
+end
+
+--------Draw Image--------
+local function OnUnload()
+	client.Command("toggleconsole", true);
+	client.Command("echo \"⠄⠄⠄⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄\"", true);
+	client.Command("echo \" ⠄⠄⠄⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄\"", true);
+	client.Command("echo \"⠄⠄⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄\"", true);
+	client.Command("echo \"⠄⠄⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄\"", true);
+	client.Command("echo \"⠄⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰\"", true);
+	client.Command("echo \"⠄⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤\"", true);
+	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗\"", true);
+	client.Command("echo \"⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠄\"", true);
+	client.Command("echo \"⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠄\"", true);
+	client.Command("echo \"⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃⠄\"", true);
+	client.Command("echo \"⠄⠘⣿⣿⣿⣿⣿⣿⣿⣿⠄⣴⣿⣶⣄⠄⣴⣶⠄⢀⣾⣿⣿⣿⣿⣿⣿⠃⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠈⠻⣿⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⠄⣿⣿⡀⣾⣿⣿⣿⣿⣛⠛⠁⠄⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠄⠄⠈⠛⢿⣿⣿⣿⠁⠞⢿⣿⣿⡄⢿⣿⡇⣸⣿⣿⠿⠛⠁⠄⠄⠄⠄⠄\"", true);
+	client.Command("echo \"⠄⠄⠄⠄⠄⠄⠄⠉⠻⣿⣿⣾⣦⡙⠻⣷⣾⣿⠃⠿⠋⠁⠄⠄⠄⠄⠄⢀⣠⣴\"", true);
+	client.Command("echo \"⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿\"", true);
+	set_clantag("", "");
 end
 
 --------Lua Callbacks--------
