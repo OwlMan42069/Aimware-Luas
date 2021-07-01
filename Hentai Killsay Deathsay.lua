@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.12";
+local VERSION_NUMBER = "2.13";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -89,27 +89,29 @@ local misc_left3 = gui.Groupbox(tab, "Grenade Throwsay", 10, 305, 310, 400);
 local misc_right = gui.Groupbox(tab, "Misc", 325, 15, 305, 400);
 
 local enable_killsays = gui.Checkbox(misc_left, "enable.killsays", "Enable Killsay Deathsay", true)
-local killsay_mode = gui.Combobox( misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags")
+local killsay_mode = gui.Combobox(misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags")
 
 local enable_clantags = gui.Checkbox(misc_left2, "enable.clantags", "Enable Premade Clantags", false)
-local clantag_mode = gui.Combobox( misc_left2, "clantag.mode", "Select Clantag Mode", "UwU Rawr xD!", "Sussy Baka", "Sorry Not Sorry", "EZFrags.co.uk")
+local clantag_mode = gui.Combobox(misc_left2, "clantag.mode", "Select Clantag Mode", "UwU Rawr xD!", "Sussy Baka", "Sorry Not Sorry", "EZFrags.co.uk")
 
 local enable_throwsay = gui.Checkbox(misc_left3, "enable.throwsay", "Enable Grenade Throwsay", false)
-local grenade_throwsay = gui.Multibox( misc_left3, "Grenade Throwsay")
-local enable_hegrenade = gui.Checkbox( grenade_throwsay, "enable.hegrenade", "HE Grenade", true)
-local enable_flashbang = gui.Checkbox( grenade_throwsay, "enable.flashbang", "Flashbang", true)
-local enable_smokegrenade = gui.Checkbox( grenade_throwsay, "enable.smokegrenade", "Smoke", true)
-local enable_molotov = gui.Checkbox( grenade_throwsay, "senable.molotov", "Molotov/Incendiary", true)
+local grenade_throwsay = gui.Multibox(misc_left3, "Select Grenades")
+local enable_hegrenade = gui.Checkbox(grenade_throwsay, "enable.hegrenade", "HE Grenade", true)
+local enable_flashbang = gui.Checkbox(grenade_throwsay, "enable.flashbang", "Flashbang", true)
+local enable_smokegrenade = gui.Checkbox(grenade_throwsay, "enable.smokegrenade", "Smoke", true)
+local enable_molotov = gui.Checkbox(grenade_throwsay, "senable.molotov", "Molotov/Incendiary", true)
 
 local EngineRadar = gui.Checkbox(misc_right, "engineradar", "Engine Radar", true)
 local ForceCrosshair = gui.Checkbox(misc_right, "forcecrosshair", "Force Crosshair", true)
 local laffmode = gui.Checkbox(misc_right, "laffmode", "Laff Mode", true)
 local copy_chat = gui.Checkbox(misc_right, "chat.copy", "Copy Chat Messages", false)
+local chat_breaker = gui.Checkbox(misc_right, "chat.breaker", "Chat Breaker", false)
 
 EngineRadar:SetDescription("Display enemies on your in-game radar.")
 ForceCrosshair:SetDescription("Display your in-game crosshair while holding snipers.")
 laffmode:SetDescription("Replaces lol with laff in chat :laff:")
 copy_chat:SetDescription("Repeats player messages.")
+chat_breaker:SetDescription("Clears chat when a player types.")
 
 --------Hentai Clantag Animation--------
 local hentai_animation = {
@@ -331,8 +333,21 @@ local function CopyMessages( msg )
       local index = msg:GetInt( 1 );
       local message = msg:GetString( 4, 1 );
       local name = client.GetPlayerNameByIndex( index );
-client.ChatSay(message);
-  end    
+      client.ChatSay(message);
+    end    
+end
+
+--------Chat Breaker--------
+local function ChatBreaker( msg )    
+  if msg:GetID() == 6 and chat_breaker:GetValue() == true then
+      local index = msg:GetInt( 1 );
+      local message = msg:GetString( 4, 1 );
+      local name = client.GetPlayerNameByIndex( index );
+      local breaker = {
+      "﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽",
+      };
+      client.ChatSay( breaker[math.random(#breaker)] )
+    end
 end
 
 --------Grenade Throwsay--------
@@ -577,7 +592,7 @@ local Hentai_Kill = {
   [22] = "Let me taste your futa cock with my pussy~",
    };
 
-function Hentai_chatsay( Event )
+function Hentai_Killsay( Event )
 
 if ( Event:GetName() == 'player_death' ) and enable_killsays:GetValue() == true and killsay_mode:GetValue() == 0 then
 
@@ -653,7 +668,7 @@ local Lewd_Kill = {
   [15] = "I'm getting pissed off and hormy right now!",
    };
 
-function Lewd_chatsay( Event )
+function Lewd_Killsay( Event )
 
   if ( Event:GetName() == 'player_death' ) and enable_killsays:GetValue() == true and killsay_mode:GetValue() == 1 then
   
@@ -685,9 +700,9 @@ function Lewd_chatsay( Event )
   end
 
 --------Apologetic Killsay Deathsay--------
-local sorrytbl = {"am sorry that","am feeling sad after","am distressed because","am upset with myself because","have been diagnosed with depression because","am broken hearted that","apologize that","would like to apologize because","am quite remorseful because","am ashamed of myself because"};
-local killtbl = {"killed","destroyed","put an end to","ended","assassinated","terminated","eliminated","executed","slaughtered","butchered","shot and killed"};
-local regrettbl = {":(","Please forgive me","I didn't mean to.","I'm a failure","I will go easy on you next time.","That was my fault","Please excuse my behaviour"};
+local apologetic = {"am sorry that","am feeling sad after","am distressed because","am upset with myself because","have been diagnosed with depression because","am broken hearted that","apologize that","would like to apologize because","am quite remorseful because","am ashamed of myself because"};
+local kill_method = {"killed","destroyed","put an end to","ended","assassinated","terminated","eliminated","executed","slaughtered","butchered","shot and killed", "annihilated"};
+local regret = {":(","Please forgive me","I didn't mean to.","I'm a failure","I will go easy on you next time.","That was my fault","Please excuse my behaviour", "I bring dishonor to my household"};
 
 local function Sorry_KillSay( Event )
 
@@ -706,7 +721,7 @@ local function Sorry_KillSay( Event )
 
        if ( INDEX_Attacker == ME and INDEX_Victim ~= ME ) then
 
-           client.ChatSay(NAME_Victim  .. ", I " .. sorrytbl[math.random( #sorrytbl )] .. " I " .. killtbl[math.random( #killtbl )] .. " you. " .. regrettbl[math.random( #regrettbl )]);
+           client.ChatSay(NAME_Victim  .. ", I " .. apologetic[math.random( #apologetic )] .. " I " .. kill_method[math.random( #kill_method )] .. " you. " .. regret[math.random( #regret )]);
 
        end
 
@@ -769,7 +784,7 @@ local Edgy_Kill = {
   [12] = "There are no ends only new beginnings",
    };
 
-function Edgy_chatsay( Event )
+function Edgy_Killsay( Event )
 
   if ( Event:GetName() == 'player_death' ) and enable_killsays:GetValue() == true and killsay_mode:GetValue() == 3 then
   
@@ -872,10 +887,10 @@ end
 --------Lua Callbacks--------
 client.AllowListener( 'player_death' );
 client.AllowListener('grenade_thrown')
-callbacks.Register( 'FireGameEvent', 'AWKS', Hentai_chatsay );
-callbacks.Register( 'FireGameEvent', 'AWKS', Lewd_chatsay );
+callbacks.Register( 'FireGameEvent', 'AWKS', Hentai_Killsay );
+callbacks.Register( 'FireGameEvent', 'AWKS', Lewd_Killsay );
 callbacks.Register( 'FireGameEvent', 'AWKS', Sorry_KillSay );
-callbacks.Register( 'FireGameEvent', 'AWKS', Edgy_chatsay );
+callbacks.Register( 'FireGameEvent', 'AWKS', Edgy_Killsay );
 callbacks.Register( 'FireGameEvent', 'AWKS', ezfrags_KillSay );
 callbacks.Register( "Draw", Hentai_Clantag);
 callbacks.Register( "Draw", Baka_Clantag);
@@ -883,6 +898,7 @@ callbacks.Register( "Draw", Apologetic_Clantag);
 callbacks.Register( "Draw", EZfrags_Clantag);
 callbacks.Register( "Draw", UnlockInventory);
 callbacks.Register( "DispatchUserMessage", "UserMessage", CopyMessages );
+callbacks.Register( "DispatchUserMessage", "UserMessage", ChatBreaker );
 callbacks.Register('FireGameEvent', hegrenade_throwsay)
 callbacks.Register('FireGameEvent', flashbang_throwsay)
 callbacks.Register('FireGameEvent', molotov_throwsay)
