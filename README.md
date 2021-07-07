@@ -24,6 +24,8 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Engine Radar (Enabled by default)
   * Force Crosshair (Enabled by default)
   * Laff Mode (Enabled by default)
+  * Copy Chat Mesages
+  * Chat Breaker
   
   Credits for the Apologetic Killsay & Force Crosshair go to the authors I cannot find :D
 
