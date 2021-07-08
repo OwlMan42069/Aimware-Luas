@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.14";
+local VERSION_NUMBER = "2.15";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -104,14 +104,14 @@ local Enable_Molotov = gui.Checkbox(Grenade_Throwsay, "enable.molotov", "Molotov
 local EngineRadar = gui.Checkbox(misc_right, "engineradar", "Engine Radar", true)
 local ForceCrosshair = gui.Checkbox(misc_right, "forcecrosshair", "Force Crosshair", true)
 local LaffMode = gui.Checkbox(misc_right, "LaffMode", "Laff Mode", true)
-local PlantMessages = gui.Checkbox(misc_right, "plant.say", "Plant Message", true)
+local PlantMessages = gui.Checkbox(misc_right, "plant.say", "Plant Messages", true)
 local Copy_Chat = gui.Checkbox(misc_right, "chat.copy", "Copy Player Messages", false)
 local Chat_Breaker = gui.Checkbox(misc_right, "chat.breaker", "Chat Breaker", false)
 
 EngineRadar:SetDescription("Display enemies on your in-game radar.")
 ForceCrosshair:SetDescription("Display your in-game crosshair while holding snipers.")
 LaffMode:SetDescription("Replaces lol with laff in chat :laff:")
-PlantMessages:SetDescription("Sends a haha funny message when you plant the bomb.")
+PlantMessages:SetDescription("Sends a haha funny message when the bomb is planted.")
 Copy_Chat:SetDescription("Repeats all player chat messages.")
 Chat_Breaker:SetDescription("Clears chat when a player sends a message.")
 
@@ -309,9 +309,9 @@ local EZfrags_Animation = {
 }
 
 --------Anti AFK + No Startup Music--------
-	client.Command("+right", true);
-	client.Command("+left", true);
-	client.Command("snd_menumusic_volume 0", true);
+	client.Command("+right", true)
+	client.Command("+left", true)
+	client.Command("snd_menumusic_volume 0", true)
 
 --------Engine Radar--------
 callbacks.Register('Draw', function()
@@ -364,11 +364,15 @@ callbacks.Register( "SendStringCmd", function( cmd )
 end)
 
 --------Plant Messages--------
-local PlantPhrases = {
+local LocalPlantPhrases = {
   "Part of the election!",
 }
 
-local function PlantMessage(Event)
+local GlobalPlantPhrases = {
+  "My mans really planted the bomb, eh?",
+}
+
+local function LocalPlantMessage(Event)
   if Event:GetName() ~= 'bomb_planted' then
       return
   end
@@ -378,7 +382,17 @@ local function PlantMessage(Event)
   end
 
   if PlantMessages:GetValue() == true then
-  client.ChatSay( PlantPhrases[math.random(#PlantPhrases)] )
+  client.ChatSay( LocalPlantPhrases[math.random(#LocalPlantPhrases)] )
+  end
+end
+
+local function GlobalPlantMessage(Event)
+  if Event:GetName() ~= 'bomb_planted' then
+      return
+  end
+
+  if PlantMessages:GetValue() == true then
+  client.ChatSay( GlobalPlantPhrases[math.random(#GlobalPlantPhrases)] )
   end
 end
 
@@ -976,7 +990,8 @@ callbacks.Register( "Draw", Apologetic_Clantag)
 callbacks.Register( "Draw", Edgy_Clantag)
 callbacks.Register( "Draw", EZfrags_Clantag)
 callbacks.Register( "Draw", UnlockInventory)
-callbacks.Register( 'FireGameEvent', 'AWKS', PlantMessage )
+callbacks.Register( 'FireGameEvent', 'AWKS', LocalPlantMessage )
+callbacks.Register( 'FireGameEvent', 'AWKS', GlobalPlantMessage )
 callbacks.Register( "DispatchUserMessage", "UserMessage", CopyMessages )
 callbacks.Register( "DispatchUserMessage", "UserMessage", ChatBreaker )
 callbacks.Register('FireGameEvent', HeGrenade_Throwsay)
