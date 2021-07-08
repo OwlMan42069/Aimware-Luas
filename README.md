@@ -14,6 +14,7 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * UwU Rawr xD! Clantag
   * Sussy Baka Clantag
   * Sorry Not Sorry Clantag
+  * No Lives Matter
   * EZfrags.co.uk Clantag
 
 * Misc
@@ -24,6 +25,7 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Engine Radar (Enabled by default)
   * Force Crosshair (Enabled by default)
   * Laff Mode (Enabled by default)
+  * Plant Messages (Enabled by default)
   * Copy Chat Mesages
   * Chat Breaker
   
