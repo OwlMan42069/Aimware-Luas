@@ -1,3 +1,4 @@
+-- AFK Killsay by RetardAlert (https://aimware.net/forum/user/419881)
 local ref = gui.Reference("Misc", "Enhancement", "Appearance")
 local Enable_AfkKillsay = gui.Checkbox(ref, "afk.killsay", "AFK Killsay", false)
 Enable_AfkKillsay:SetDescription("States you're AFK with the players name and your weapon.")
