@@ -16,6 +16,16 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Sorry Not Sorry Clantag
   * No Lives Matter
   * EZfrags.co.uk Clantag
+  
+* Grenade Throwsay
+  * HE Grenade
+  * Flashbang
+  * Smoke
+  * Molotov/incendiary
+  
+* Message Events
+  * Copy Player Messages
+  * Chat Breaker
 
 * Misc
   * Auto Update - Credits to [Cheeseot](https://aimware.net/forum/user/215088) & [Sestain](https://aimware.net/forum/user/219942)
@@ -26,10 +36,8 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Force Crosshair (Enabled by default)
   * Laff Mode (Enabled by default)
   * Plant Messages (Enabled by default)
-  * Copy Chat Mesages
-  * Chat Breaker
   
-  Credits for the Apologetic Killsay & Force Crosshair go to the authors I cannot find :D
+  Credits for the Grenade Throwsay Credits to [Zack](https://aimware.net/forum/user/36169), [Myself](https://aimware.net/forum/user/419881) & [Zack](https://github.com/Zack2kl) again.
 
 [No More Startup Music](https://aimware.net/forum/thread/152562)
 * Disables main menu music when you launch new accounts! (Make sure to set the Lua as autorun.)
