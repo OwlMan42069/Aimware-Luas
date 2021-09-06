@@ -7,7 +7,6 @@ local function ChatBreaker( msg )
     if msg:GetID() == 6 and chat_breaker:GetValue() == true then
         local index = msg:GetInt( 1 );
         local message = msg:GetString( 4, 1 );
-        local name = client.GetPlayerNameByIndex( index );
         local breaker = {
         "﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽",
         };
