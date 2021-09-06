@@ -7,10 +7,7 @@ local function ChatBreaker( msg )
     if msg:GetID() == 6 and chat_breaker:GetValue() == true then
         local index = msg:GetInt( 1 );
         local message = msg:GetString( 4, 1 );
-        local breaker = {
-        "﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽",
-        };
-        client.ChatSay( breaker[math.random(#breaker)] )
+        client.ChatSay("﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽")
       end
   end
 callbacks.Register( "DispatchUserMessage", "UserMessage", ChatBreaker );
