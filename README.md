@@ -9,10 +9,11 @@ If you enjoy my Luas feel free to +rep my [profile](https://aimware.net/forum/us
   * Apologetic Killsay 
   * Edgy Killsay Deathsay
   * EZfrags Killsay Deathsay
+  * AFK Killsay Deathsay
   
 * Animated Clantags
-  * UwU Rawr xD! Clantag
   * Sussy Baka Clantag
+  * UwU Rawr xD! Clantag
   * Sorry Not Sorry Clantag
   * No Lives Matter
   * EZfrags.co.uk Clantag
