@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.2";
+local VERSION_NUMBER = "2.3";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -106,13 +106,15 @@ local enable_molotov = gui.Checkbox(grenade_throwsay, "senable.molotov", "Moloto
 
 local EngineRadar = gui.Checkbox(misc_right2, "engineradar", "Engine Radar", true)
 local ForceCrosshair = gui.Checkbox(misc_right2, "forcecrosshair", "Force Crosshair", true)
+local RecoilCrosshair = gui.Checkbox(misc_right2, "recoilcrosshair", "Recoil Crosshair", false)
 local laffmode = gui.Checkbox(misc_right2, "laffmode", "Laff Mode", true)
 
 local enable_msgevents = gui.Checkbox(misc_right, "enable.msgevents", "Enable Message Events", false)
 local msgevents_mode = gui.Combobox( misc_right, "msgevents.mode", "Select Message Mode", "Copy Player Messages", "Chat Breaker")
 
-EngineRadar:SetDescription("Display enemies on your in-game radar.")
-ForceCrosshair:SetDescription("Display your in-game crosshair while holding snipers.")
+EngineRadar:SetDescription("Displays enemies on your in-game radar.")
+ForceCrosshair:SetDescription("Displays your in-game crosshair while holding snipers.")
+RecoilCrosshair:SetDescription("Displays your recoil using your in-game crosshair.")
 laffmode:SetDescription("Replaces lol with laff in chat :laff:")
 
 
@@ -141,10 +143,11 @@ local function OnUnload()
 	end
 end
 
---------Anti AFK + No Startup Music--------
+--------Miscellaneous--------
 client.Command("+right", true)
 client.Command("+left", true)
 client.Command("snd_menumusic_volume 0", true)
+client.Command("cl_timeout 0 0 0 7", true)
 
 --------Engine Radar--------
 callbacks.Register('CreateMove', function()
@@ -175,6 +178,15 @@ callbacks.Register('FireGameEvent', function(e)
 		end
 	end
 end)
+
+--------Recoil Crosshair--------
+local function CrosshairRecoil()
+	if RecoilCrosshair:GetValue() and not gui.GetValue("rbot.master") then
+		client.SetConVar("cl_crosshair_recoil", 1, true)
+	else
+		client.SetConVar("cl_crosshair_recoil", 0, true)
+	end
+end
 
 --------Inventory Unlocker--------
 local function UnlockInventory()
@@ -221,7 +233,7 @@ local ThrowSays = {
 		'Look a bird!',
 		'Look a plane!',
 		'FLASHBANG!',
-        'Bang bang bangity bang I said bang bang bangity bang bang bang bang',
+		'Bang bang bangity bang I said bang bang bangity bang bang bang bang',
 	},
 
 	molotov = {
@@ -734,5 +746,6 @@ callbacks.Register('FireGameEvent', for_chatsay)
 callbacks.Register('FireGameEvent', for_throwsay)
 callbacks.Register('Draw', for_clantags)
 callbacks.Register("DispatchUserMessage", for_msgevents)
+callbacks.Register('CreateMove', CrosshairRecoil)
 callbacks.Register("Draw", UnlockInventory)
 callbacks.Register("Unload", OnUnload)
