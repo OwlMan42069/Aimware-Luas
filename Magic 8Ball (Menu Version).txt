@@ -17,6 +17,7 @@ local magic_8ball = gui.Editbox(ref, "magicballz", "Insert Cringy Question Here"
 
 
 -- Phrases & Colors
+local notice1 = {"You must ask the ball a question for a response.",}
 local question1 = {"Question:",}
 local answer1 = {"Answer:",}
 local prefix1 = {"\01[\03Magic 8Ball\01]",}
@@ -40,6 +41,7 @@ local responses = {
 
 -- Magic 8Ball
 gui.Button(ref, "Shake Magic 8Ball", function() magic_8ball:GetValue()
+    local nootice = notice1[math.random(#notice1)]
     local question = question1[math.random(#question1)]
     local answer = answer1[math.random(#answer1)]
     local prefix = prefix1[math.random(#prefix1)]
@@ -53,6 +55,7 @@ gui.Button(ref, "Shake Magic 8Ball", function() magic_8ball:GetValue()
         msg = ('%s %s %s %s %s %s - %s %s %s %s'):format(prefix, g, question, y, magic_8ball:GetValue(), w, r, answer, b, response)
         client.PrintChat(msg)
     else
-        client.PrintChat('You must ask the ball a question for a response.')
+        msg2 = ('%s %s %s'):format(prefix, r, notice)
+        client.PrintChat(msg2)
     end
 end)
