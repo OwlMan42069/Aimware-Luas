@@ -41,7 +41,7 @@ local responses = {
 
 -- Magic 8Ball
 gui.Button(ref, "Shake Magic 8Ball", function() magic_8ball:GetValue()
-    local nootice = notice1[math.random(#notice1)]
+    local notice = notice1[math.random(#notice1)]
     local question = question1[math.random(#question1)]
     local answer = answer1[math.random(#answer1)]
     local prefix = prefix1[math.random(#prefix1)]
