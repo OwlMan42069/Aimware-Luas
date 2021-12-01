@@ -3,7 +3,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Chat%20Commands.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Chat%20Commands%20Version.txt";
-local VERSION_NUMBER = "1.0";
+local VERSION_NUMBER = "1.1";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -140,36 +140,36 @@ end
 callbacks.Register("DispatchUserMessage", function(msg)
     if msg:GetID() == 6 then
         local index = msg:GetInt(1)
-        local message = msg:GetString(4, 1)
+        local message = msg:GetString(4,1):lower()
         local m = string.match
 
-        local player_name = client.GetPlayerNameByIndex( index )
+        local player_name = client.GetPlayerNameByIndex(index)
         local number = numbers[math.random(#numbers)]
         local response = responses[math.random(#responses)]
         local result = results[math.random(#results)]
         local thingy = gaydar[math.random(#gaydar)]
 
-        if m(message, "!roll") or m(message, "!Roll") or m(message, "!ROLL") and enable_roll:GetValue() then
+        if m(message, "!roll") and enable_roll:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s rolled a %s'):format(player_name, number)
                 client.ChatSay(msg)
             end)
         end
 
-        if m(message, "!8ball") or m(message, "!8Ball") or m(message, "!8BALL") and enable_8ball:GetValue() then
+        if m(message, "!8ball") and enable_8ball:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 client.ChatSay("❽: " .. response)
             end)
         end
 
-        if m(message, "!cf") or m(message, "!CF") or m(message, "!flip") or m(message, "!Flip") or m(message, "!FLIP") and enable_cf:GetValue() then
+        if m(message, "!cf") or m(message, "!flip") or m(message, "!coin flip") or m(message, "!coinflip") and enable_cf:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s %s'):format(player_name, result)
                 client.ChatSay(msg)
             end)
         end
 
-        if m(message, "!gay") or m(message, "!Gay") or m(message, "!GAy") or m(message, "!GAY") or m(message, "!gAy") or m(message, "!gAY") or m(message, "!gaY") or m(message, "!GaY") and enable_roll:GetValue() then
+        if m(message, "!gay") and enable_roll:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s %s'):format(player_name, thingy)
                 client.ChatSay(msg)
