@@ -41,9 +41,9 @@ callbacks.Register( "Draw", "handleUpdates", function()
 		end
 		draw.SetFont(updaterfont1);
 		draw.Color(0,180,255,255 - fadeout);
-		draw.Text(7 - 650 + fadein, 7, "ChatCommands");
+		draw.Text(7 - 650 + fadein, 7, "Chat Commands:");
 		draw.Color(225,225,225,255 - fadeout);
-		draw.Text(7 + draw.GetTextSize("ChatCommands ") - 650 + fadein, 7, "RetardAlert");
+		draw.Text(7 + draw.GetTextSize("Chat Commands: ") - 650 + fadein, 7, "RetardAlert");
 		draw.Color(0,180,255,255 - fadeout);
 		draw.Text(7 + draw.GetTextSize("Chat Commands: RetardAlert  ") - 650 + fadein, 7, "\\");
 		spacing = draw.GetTextSize("Chat Commands: RetardAlert  \\  ");
