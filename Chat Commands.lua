@@ -1,8 +1,8 @@
 -- Chat Commands (!roll !8ball !cf) by RetardAlert https://aimware.net/forum/user/419881/reputation/add
 -- Credits for the timer go to RadicalMario, imacookie, and yu0r for sending it to me :)
 local SCRIPT_FILE_NAME = GetScriptName();
-local SCRIPT_FILE_ADDR = "";
-local VERSION_FILE_ADDR = "";
+local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Chat%20Commands.lua";
+local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Chat%20Commands%20Version.txt";
 local VERSION_NUMBER = "1.0";
 local version_check_done = false;
 local update_downloaded = false;
