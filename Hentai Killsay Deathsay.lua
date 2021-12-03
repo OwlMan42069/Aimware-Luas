@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.3";
+local VERSION_NUMBER = "2.4";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -86,14 +86,14 @@ local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club v" .. VERSION_NUM
 local misc_left = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 310, 400)
 local misc_left2= gui.Groupbox(tab, "Clantags", 10, 160, 310, 400)
 local misc_left3 = gui.Groupbox(tab, "Grenade Throwsay", 10, 305, 310, 400)
-local misc_right = gui.Groupbox(tab, "Message Events", 325, 15, 305, 400)
-local misc_right2 = gui.Groupbox(tab, "Misc", 325, 160, 305, 400)
+local misc_right = gui.Groupbox(tab, "Game-Chat", 325, 15, 305, 400)
+local misc_right2 = gui.Groupbox(tab, "Misc", 325, 250, 305, 400)
 
 local enable_killsays = gui.Checkbox(misc_left, "enable.killsays", "Enable Killsay Deathsay", true)
-local killsay_mode = gui.Combobox( misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags", "AFK")
+local killsay_mode = gui.Combobox(misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags", "AFK")
 
 local enable_clantags = gui.Checkbox(misc_left2, "enable.clantags", "Enable Premade Clantags", false)
-local clantag_mode = gui.Combobox( misc_left2, "clantag.mode", "Select clantag", "Sussy Baka", "UwU Rawr xD!", "Sorry Not Sorry", "No Lives Matter", "EZFrags.co.uk")
+local clantag_mode = gui.Combobox(misc_left2, "clantag.mode", "Select clantag", "Sussy Baka", "UwU Rawr xD!", "Sorry Not Sorry", "No Lives Matter", "EZFrags.co.uk")
 local set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', mem.FindPattern("engine.dll", "53 56 57 8B DA 8B F9 FF 15"))
 local clantagset = 0
 
@@ -110,7 +110,13 @@ local RecoilCrosshair = gui.Checkbox(misc_right2, "recoilcrosshair", "Recoil Cro
 local laffmode = gui.Checkbox(misc_right2, "laffmode", "Laff Mode", true)
 
 local enable_msgevents = gui.Checkbox(misc_right, "enable.msgevents", "Enable Message Events", false)
-local msgevents_mode = gui.Combobox( misc_right, "msgevents.mode", "Select Message Mode", "Copy Player Messages", "Chat Breaker")
+local msgevents_mode = gui.Combobox(misc_right, "msgevents.mode", "Select Message Mode", "Copy Player Messages", "Chat Breaker")
+local enable_chatcmds = gui.Checkbox(misc_right, "enable.chatcmds", "Enable Chat Commands", true)
+local chat_commands = gui.Multibox(misc_right, "Select Chat Commands")
+local enable_roll = gui.Checkbox(chat_commands, "enable.roll", "!roll", true)
+local enable_8ball = gui.Checkbox(chat_commands, "enable.8ball", "!8ball", true)
+local enable_gaydar = gui.Checkbox(chat_commands, "enable.gaydar", "!gay", true)
+local enable_cf = gui.Checkbox(chat_commands, "enable.cf", "!cf", true)
 
 EngineRadar:SetDescription("Displays enemies on your in-game radar.")
 ForceCrosshair:SetDescription("Displays your in-game crosshair while holding snipers.")
@@ -201,24 +207,84 @@ callbacks.Register('SendStringCmd', function(cmd)
 end)
 
 --------Message Events--------
-local function for_msgevents( msg )
-    if not enable_msgevents:GetValue() then
-        return
-    end
+local numbers = {"1","2","3","4","5","6",}
+local responses = {"Yes - definitely.","It is decidedly so.","Without a doubt.","Reply hazy, try again.","Ask again later.","Better not tell you now.","My sources say no.","Outlook not so good.","Very doubtful.",}
+local results = {"won the coinflip!","lost the coinflip!",}
+local gaydar = {"is gay!","is not gay!",}
 
-    if msg:GetID() ~= 6 then
-        return
-    end
+local timer = timer or {}
+local timers = {}
 
-    local index = msg:GetInt( 1 )
-    local message = msg:GetString( 4, 1 )
+function timer.Create(name, delay, times, func)
+    table.insert(timers, {["name"] = name, ["delay"] = delay, ["times"] = times, ["func"] = func, ["lastTime"] = globals.RealTime()})
+end
 
-    if msgevents_mode:GetValue() == 0 then
-        client.ChatSay(message)
-    elseif msgevents_mode:GetValue() == 1 then
-        client.ChatSay("﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽")
+function timer.Remove(name)
+    for k,v in pairs(timers or {}) do
+        if (name == v["name"]) then table.remove(timers, k) end
     end
 end
+
+callbacks.Register("DispatchUserMessage", function(msg)
+    if msg:GetID() == 6 then
+        local index = msg:GetInt(1)
+		local message = msg:GetString(4,1)
+        local message2 = msg:GetString(4,1):lower()
+        local m = string.match
+
+        local player_name = client.GetPlayerNameByIndex(index)
+        local number = numbers[math.random(#numbers)]
+        local response = responses[math.random(#responses)]
+        local result = results[math.random(#results)]
+        local thingy = gaydar[math.random(#gaydar)]
+
+		if enable_msgevents:GetValue() and msgevents_mode:GetValue() == 0 then
+			client.ChatSay(message)
+		elseif enable_msgevents:GetValue() and msgevents_mode:GetValue() == 1 then
+			client.ChatSay("﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽")
+		end
+
+        if m(message2, "!roll") and enable_chatcmds:GetValue() and enable_roll:GetValue() then
+            timer.Create("message_delay", 0.7, 1, function()
+                msg = ('%s rolled a %s'):format(player_name, number)
+                client.ChatSay(msg)
+            end)
+        end
+
+        if m(message2, "!8ball") and enable_chatcmds:GetValue() and enable_8ball:GetValue() then
+            timer.Create("message_delay", 0.7, 1, function()
+                client.ChatSay("❽: " .. response)
+            end)
+        end
+
+        if m(message2, "!gay") and enable_chatcmds:GetValue() and enable_gaydar:GetValue() then
+            timer.Create("message_delay", 0.7, 1, function()
+                msg = ('%s %s'):format(player_name, thingy)
+                client.ChatSay(msg)
+            end)
+        end
+
+        if m(message2, "!cf") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!flip") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!coin flip") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!coinflip") and enable_chatcmds:GetValue() and enable_cf:GetValue() then
+            timer.Create("message_delay", 0.7, 1, function()
+                msg = ('%s %s'):format(player_name, result)
+                client.ChatSay(msg)
+            end)
+        end
+    end
+end)
+
+callbacks.Register("Draw", function()
+    for k,v in pairs(timers or {}) do
+  
+        if (v["times"] <= 0) then table.remove(timers, k) end
+      
+        if (v["lastTime"] + v["delay"] <= globals.RealTime()) then
+            timers[k]["lastTime"] = globals.RealTime()
+            timers[k]["times"] = timers[k]["times"] - 1
+            v["func"]()
+        end  
+    end
+end)
 
 
 --Throwsays
