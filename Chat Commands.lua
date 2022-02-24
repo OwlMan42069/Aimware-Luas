@@ -3,7 +3,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Chat%20Commands.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Chat%20Commands%20Version.txt";
-local VERSION_NUMBER = "1.1";
+local VERSION_NUMBER = "1.2";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -82,16 +82,14 @@ callbacks.Register( "Draw", "handleUpdates", function()
 end)
 
 local ref = gui.Reference("Misc", "Enhancement", "Appearance")
-local enable_roll = gui.Checkbox(ref, "enable.roll", "!roll", true)
-local enable_8ball = gui.Checkbox(ref, "enable.8ball", "!8ball", true)
-local enable_cf = gui.Checkbox(ref, "enable.cf", "!cf", true)
-local enable_gaydar = gui.Checkbox(ref, "enable.gaydar", "!gay", true)
-local info = gui.Text(enable_roll, "Chat Commands by RetardAlert")
-
-enable_roll:SetDescription("Use: Type !roll in chat.")
-enable_8ball:SetDescription("Use: Type !8ball followed by a question in chat.")
-enable_cf:SetDescription("Use: Type !cf or !flip followed by a bet in chat (Optional).")
-enable_gaydar:SetDescription("Use: Type !gay in chat.")
+local enable_commands = gui.Checkbox(ref, "enable.commands", "Enable Chat Commands", true)
+local commands = gui.Multibox(ref, "Select Chat Commands ")
+local enable_ranks = gui.Checkbox(commands, "enable.ranks", "!ranks", true)
+local enable_roll = gui.Checkbox(commands, "enable.roll", "!roll", true)
+local enable_8ball = gui.Checkbox(commands, "enable.8ball", "!8ball", true)
+local enable_gaydar = gui.Checkbox(commands, "enable.gaydar", "!gay", true)
+local enable_coin_flip = gui.Checkbox(commands, "enable.cf", "!flip", true)
+local ranks_mode = gui.Combobox(ref, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat")
 
 local numbers = {
     "1",
@@ -124,6 +122,31 @@ local gaydar = {
     "is not gay!",
 }
 
+local ranks = {
+    "S1",
+    "S2",
+    "S3",
+    "S4",
+    "SE",
+    "SEM",
+    
+    "GN1",
+    "GN2",
+    "GN3",
+    "GNM",
+    
+    "MG1",
+    "MG2",
+    "MGE",
+    "DMG",
+    
+    "LE",
+    "LEM",
+    "SMFC",
+    "GE",
+}
+
+
 local timer = timer or {}
 local timers = {}
 
@@ -142,38 +165,62 @@ callbacks.Register("DispatchUserMessage", function(msg)
         local index = msg:GetInt(1)
         local message = msg:GetString(4,1):lower()
         local m = string.match
+        local ec = enable_commands:GetValue()
+        local ecf = enable_coin_flip:GetValue()
 
         local player_name = client.GetPlayerNameByIndex(index)
+        local lp = client.GetLocalPlayerIndex()
         local number = numbers[math.random(#numbers)]
         local response = responses[math.random(#responses)]
         local result = results[math.random(#results)]
         local thingy = gaydar[math.random(#gaydar)]
 
-        if m(message, "!roll") and enable_roll:GetValue() then
+        if m(message, "!roll") and ec and enable_roll:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s rolled a %s'):format(player_name, number)
                 client.ChatSay(msg)
             end)
         end
 
-        if m(message, "!8ball") and enable_8ball:GetValue() then
+        if m(message, "!8ball") and ec and enable_8ball:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 client.ChatSay("❽: " .. response)
             end)
         end
 
-        if m(message, "!cf") or m(message, "!flip") or m(message, "!coin flip") or m(message, "!coinflip") and enable_cf:GetValue() then
+        if m(message, "!cf") and ec and ecf or m(message, "!flip") and ec and ecf or m(message, "!coin flip") and ec and ecf or m(message, "!coinflip") and ec and ecf then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s %s'):format(player_name, result)
                 client.ChatSay(msg)
             end)
         end
 
-        if m(message, "!gay") and enable_roll:GetValue() then
+        if m(message, "!gay") and ec and enable_roll:GetValue() then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s %s'):format(player_name, thingy)
                 client.ChatSay(msg)
             end)
+        end
+
+        if m(message, "!ranks") and ec and enable_ranks:GetValue() then
+            for i, v in next, entities.FindByClass("CCSPlayer") do
+                if v:GetName() ~= "GOTV" and entities.GetPlayerResources():GetPropInt("m_iPing", v:GetIndex()) ~= 0 then
+                    local index = v:GetIndex()
+                    local rank_index = entities.GetPlayerResources():GetPropInt("m_iCompetitiveRanking", index)
+                    local wins = entities.GetPlayerResources():GetPropInt("m_iCompetitiveWins", index)
+                    local rank = ranks[rank_index] or "Unranked"
+                    if ranks_mode:GetValue() == 0 then 
+                        timer.Create("message_delay", 0.7, i, function()
+                            client.ChatTeamSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
+                        end)
+
+                    elseif ranks_mode:GetValue() == 1 then 
+                        timer.Create("message_delay", 0.7, i, function()
+                            client.ChatSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
+                        end)
+                    end
+                end
+            end
         end
     end
 end)
