@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.4";
+local VERSION_NUMBER = "2.5";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -87,7 +87,7 @@ local misc_left = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 310, 400)
 local misc_left2= gui.Groupbox(tab, "Clantags", 10, 160, 310, 400)
 local misc_left3 = gui.Groupbox(tab, "Grenade Throwsay", 10, 305, 310, 400)
 local misc_right = gui.Groupbox(tab, "Game-Chat", 325, 15, 305, 400)
-local misc_right2 = gui.Groupbox(tab, "Misc", 325, 250, 305, 400)
+local misc_right2 = gui.Groupbox(tab, "Misc", 325, 310, 305, 400)
 
 local enable_killsays = gui.Checkbox(misc_left, "enable.killsays", "Enable Killsay Deathsay", true)
 local killsay_mode = gui.Combobox(misc_left, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags", "AFK")
@@ -107,21 +107,21 @@ local enable_molotov = gui.Checkbox(grenade_throwsay, "senable.molotov", "Moloto
 local EngineRadar = gui.Checkbox(misc_right2, "engineradar", "Engine Radar", true)
 local ForceCrosshair = gui.Checkbox(misc_right2, "forcecrosshair", "Force Crosshair", true)
 local RecoilCrosshair = gui.Checkbox(misc_right2, "recoilcrosshair", "Recoil Crosshair", false)
-local laffmode = gui.Checkbox(misc_right2, "laffmode", "Laff Mode", true)
 
 local enable_msgevents = gui.Checkbox(misc_right, "enable.msgevents", "Enable Message Events", false)
 local msgevents_mode = gui.Combobox(misc_right, "msgevents.mode", "Select Message Mode", "Copy Player Messages", "Chat Breaker")
 local enable_chatcmds = gui.Checkbox(misc_right, "enable.chatcmds", "Enable Chat Commands", true)
 local chat_commands = gui.Multibox(misc_right, "Select Chat Commands")
+local enable_ranks = gui.Checkbox(chat_commands, "enable.ranks", "!ranks", true)
 local enable_roll = gui.Checkbox(chat_commands, "enable.roll", "!roll", true)
 local enable_8ball = gui.Checkbox(chat_commands, "enable.8ball", "!8ball", true)
 local enable_gaydar = gui.Checkbox(chat_commands, "enable.gaydar", "!gay", true)
-local enable_cf = gui.Checkbox(chat_commands, "enable.cf", "!cf", true)
+local enable_coin_flip = gui.Checkbox(chat_commands, "enable.cf", "!flip", true)
+local ranks_mode = gui.Combobox(misc_right, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat")
 
 EngineRadar:SetDescription("Displays enemies on your in-game radar.")
 ForceCrosshair:SetDescription("Displays your in-game crosshair while holding snipers.")
 RecoilCrosshair:SetDescription("Displays your recoil using your in-game crosshair.")
-laffmode:SetDescription("Replaces lol with laff in chat :laff:")
 
 
 --------Draw Image--------
@@ -199,14 +199,8 @@ local function UnlockInventory()
 	panorama.RunScript('LoadoutAPI.IsLoadoutAllowed = () => true');
 end
 
---------Laff Mode--------
-callbacks.Register('SendStringCmd', function(cmd)
-	if laffmode:GetValue() and string.find(cmd:Get(), 'say "lol"') then
-		cmd:Set('say "laff"')
-	end
-end)
-
 --------Message Events--------
+local ranks = {"S1","S2","S3","S4","SE","SEM","GN1","GN2","GN3","GNM","MG1","MG2","MGE","DMG","LE","LEM","SMFC","GE",}
 local numbers = {"1","2","3","4","5","6",}
 local responses = {"Yes - definitely.","It is decidedly so.","Without a doubt.","Reply hazy, try again.","Ask again later.","Better not tell you now.","My sources say no.","Outlook not so good.","Very doubtful.",}
 local results = {"won the coinflip!","lost the coinflip!",}
@@ -231,6 +225,8 @@ callbacks.Register("DispatchUserMessage", function(msg)
 		local message = msg:GetString(4,1)
         local message2 = msg:GetString(4,1):lower()
         local m = string.match
+        local ec = enable_chatcmds:GetValue()
+        local ecf = enable_coin_flip:GetValue()
 
         local player_name = client.GetPlayerNameByIndex(index)
         local number = numbers[math.random(#numbers)]
@@ -264,11 +260,32 @@ callbacks.Register("DispatchUserMessage", function(msg)
             end)
         end
 
-        if m(message2, "!cf") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!flip") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!coin flip") and enable_chatcmds:GetValue() and enable_cf:GetValue() or m(message2, "!coinflip") and enable_chatcmds:GetValue() and enable_cf:GetValue() then
+        if m(message2, "!cf") and ec and ecf or m(message2, "!flip") and ec and ecf or m(message2, "!coin flip") and ec and ecf or m(message2, "!coinflip") and ec and ecf then
             timer.Create("message_delay", 0.7, 1, function()
                 msg = ('%s %s'):format(player_name, result)
                 client.ChatSay(msg)
             end)
+        end
+
+        if m(message, "!ranks") and ec and enable_ranks:GetValue() then
+            for i, v in next, entities.FindByClass("CCSPlayer") do
+                if v:GetName() ~= "GOTV" and entities.GetPlayerResources():GetPropInt("m_iPing", v:GetIndex()) ~= 0 then
+                    local index = v:GetIndex()
+                    local rank_index = entities.GetPlayerResources():GetPropInt("m_iCompetitiveRanking", index)
+                    local wins = entities.GetPlayerResources():GetPropInt("m_iCompetitiveWins", index)
+                    local rank = ranks[rank_index] or "Unranked"
+                    if ranks_mode:GetValue() == 0 then 
+                        timer.Create("message_delay", 0.7, i, function()
+                            client.ChatTeamSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
+                        end)
+
+                    elseif ranks_mode:GetValue() == 1 then 
+                        timer.Create("message_delay", 0.7, i, function()
+                            client.ChatSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
+                        end)
+                    end
+                end
+            end
         end
     end
 end)
@@ -811,7 +828,6 @@ client.AllowListener('grenade_thrown')
 callbacks.Register('FireGameEvent', for_chatsay)
 callbacks.Register('FireGameEvent', for_throwsay)
 callbacks.Register('Draw', for_clantags)
-callbacks.Register("DispatchUserMessage", for_msgevents)
 callbacks.Register('CreateMove', CrosshairRecoil)
 callbacks.Register("Draw", UnlockInventory)
 callbacks.Register("Unload", OnUnload)
