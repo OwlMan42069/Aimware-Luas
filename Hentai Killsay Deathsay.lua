@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.6";
+local VERSION_NUMBER = "2.7";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -109,6 +109,7 @@ local enable_roll = gui.Checkbox(chat_commands, "enable.roll", "!roll", true)
 local enable_8ball = gui.Checkbox(chat_commands, "enable.8ball", "!8ball", true)
 local enable_gaydar = gui.Checkbox(chat_commands, "enable.gaydar", "!gay", true)
 local enable_coin_flip = gui.Checkbox(chat_commands, "enable.flip", "!flip", true)
+local enable_anime = gui.Checkbox(chat_commands, "enable.anime", "!anime", true)
 local ranks_mode = gui.Combobox(right_tab, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat")
 
 local enable_throwsay = gui.Checkbox(right_tab, "enable.throwsay", "Enable Grenade Throwsay", true)
@@ -352,19 +353,19 @@ callbacks.Register("DispatchUserMessage", function(msg)
         local response = responses[math.random(#responses)]
         local result = results[math.random(#results)]
         local thingy = gaydar[math.random(#gaydar)]
-
+		
 		if enable_msgevents:GetValue() and msgevents_mode:GetValue() == 0 then
-            if player_name ~= lp_name then
-                timer.Create("message_delay", msgevents_speed:GetValue(), 1, function()
-			client.ChatSay(message)
-                end)
-            end
+			if player_name ~= lp_name then
+				timer.Create("message_delay", msgevents_speed:GetValue(), 1, function()
+					client.ChatSay(message)
+				end)
+			end
 		elseif enable_msgevents:GetValue() and msgevents_mode:GetValue() == 1 then
-            if player_name ~= lp_name then
-                timer.Create("message_delay", msgevents_speed:GetValue(), 1, function()
-			client.ChatSay("﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽")
-                end)
-            end
+			if player_name ~= lp_name then
+				timer.Create("message_delay", msgevents_speed:GetValue(), 1, function()
+					client.ChatSay("﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽")
+				end)
+			end
 		end
 
         if m(message2, "!roll") and enable_chatcmds:GetValue() and enable_roll:GetValue() then
@@ -958,7 +959,7 @@ local function for_chatsay(e)
 		if say.Death then
             timer.Create("message_delay", msgevents_speed:GetValue(), 1, function()
                 client.ChatSay( say.Death[math.random(#say.Death)] )
-            end)
+			end)
 		end
 	end
 end
