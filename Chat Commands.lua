@@ -4,7 +4,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Chat%20Commands.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Chat%20Commands%20Version.txt";
-local VERSION_NUMBER = "1.3";
+local VERSION_NUMBER = "1.4";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -91,7 +91,7 @@ local enable_8ball = gui.Checkbox(commands, "enable.8ball", "!8ball", true)
 local enable_gaydar = gui.Checkbox(commands, "enable.gaydar", "!gay", true)
 local enable_coin_flip = gui.Checkbox(commands, "enable.cf", "!flip", true)
 local enable_anime = gui.Checkbox(commands, "enable.anime", "!anime", true)
-local ranks_mode = gui.Combobox(ref, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat")
+local ranks_mode = gui.Combobox(ref, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat", "Self Chat")
 
 local ranks = {"S1","S2","S3","S4","SE","SEM","GN1","GN2","GN3","GNM","MG1","MG2","MGE","DMG","LE","LEM","SMFC","GE",}
 local numbers = {"1","2","3","4","5","6",}
@@ -220,13 +220,25 @@ local timer = timer or {}
 local timers = {}
 
 function timer.Create(name, delay, times, func)
-    table.insert(timers, {["name"] = name, ["delay"] = delay, ["times"] = times, ["func"] = func, ["lastTime"] = globals.RealTime()})
+    table.insert(timers, {["name"] = name, ["delay"] = delay, ["times"] = times, ["func"] = func, ["lastTime"] = common.Time()})
 end
 
 function timer.Remove(name)
     for k,v in pairs(timers or {}) do
         if (name == v["name"]) then table.remove(timers, k) end
     end
+end
+
+local c_hud_chat =
+    ffi.cast("unsigned long(__thiscall*)(void*, const char*)", mem.FindPattern("client.dll", "55 8B EC 53 8B 5D 08 56 57 8B F9 33 F6 39 77 28"))(
+    ffi.cast("unsigned long**", ffi.cast("uintptr_t", mem.FindPattern("client.dll", "B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 5D 08")) + 1)[0],
+    "CHudChat"
+)
+
+local ffi_print_chat = ffi.cast("void(__cdecl*)(int, int, int, const char*, ...)", ffi.cast("void***", c_hud_chat)[0][27])
+
+function client.PrintChat(msg)
+    ffi_print_chat(c_hud_chat, 0, 0, " " .. msg)
 end
 
 callbacks.Register("DispatchUserMessage", function(msg)
@@ -287,7 +299,7 @@ callbacks.Register("DispatchUserMessage", function(msg)
                     local index = v:GetIndex()
                     local rank_index = entities.GetPlayerResources():GetPropInt("m_iCompetitiveRanking", index)
                     local wins = entities.GetPlayerResources():GetPropInt("m_iCompetitiveWins", index)
-                    local rank = ranks[rank_index] or "Unranked"
+                    local rank = ranks[rank_index] or "no rank"
                     if ranks_mode:GetValue() == 0 then 
                         timer.Create("message_delay", 0.7, i, function()
                             client.ChatTeamSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
@@ -296,6 +308,11 @@ callbacks.Register("DispatchUserMessage", function(msg)
                     elseif ranks_mode:GetValue() == 1 then 
                         timer.Create("message_delay", 0.7, i, function()
                             client.ChatSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
+                        end)
+                    elseif ranks_mode:GetValue() == 2 then
+                        timer.Create("message_delay", 0.7, i, function()
+                            msg = ('%s %s %s %s %s %s %s %s %s %s %s'):format("\03", v:GetName(), "\09", " has ", "\06", wins, " wins ", "\07", "(", rank, ")")
+                            client.PrintChat(msg)
                         end)
                     end
                 end
@@ -309,8 +326,8 @@ callbacks.Register("Draw", function()
   
         if (v["times"] <= 0) then table.remove(timers, k) end
       
-        if (v["lastTime"] + v["delay"] <= globals.RealTime()) then
-            timers[k]["lastTime"] = globals.RealTime()
+        if (v["lastTime"] + v["delay"] <= common.Time()) then
+            timers[k]["lastTime"] = common.Time()
             timers[k]["times"] = timers[k]["times"] - 1
             v["func"]()
         end  
