@@ -3,7 +3,7 @@ local AutoDerank = gui.Checkbox(ref, 'auto.derank', 'Automatic Derank', false)
 AutoDerank:SetDescription('Have the rest of your team leave before the match starts.')
 
 local function Derank(e)
-    if e:GetName() == 'round_prestart' or e:GetName() == 'round_start' and AutoDerank:GetValue() then
+    if e:GetName() == 'round_prestart' and AutoDerank:GetValue() or e:GetName() == 'round_start' and AutoDerank:GetValue() then
         client.Command('disconnect', true)
         panorama.RunScript("CompetitiveMatchAPI.ActionReconnectToOngoingMatch()")
     end
