@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.7";
+local VERSION_NUMBER = "2.8";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -85,18 +85,20 @@ local misc_ref = gui.Reference("Misc")
 local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club v" .. VERSION_NUMBER))
 
 local left_tab = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 310, 400)
-local left_tab2 = gui.Groupbox(tab, "Clantags", 10, 210, 310, 400)
-local left_tab3 = gui.Groupbox(tab, "Misc", 10, 360, 310, 400)
+--local left_tab2 = gui.Groupbox(tab, "Clantags", 10, 210, 310, 400)
+local left_tab3 = gui.Groupbox(tab, "Misc", 10, 210, 310, 400)
 local right_tab = gui.Groupbox(tab, "Game-Chat", 325, 15, 305, 400)
 
 local enable_killsays = gui.Checkbox(left_tab, "enable.killsays", "Enable Killsay Deathsay", true)
 local killsay_mode = gui.Combobox(left_tab, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags", "AFK")
 local killsay_speed = gui.Slider(left_tab, "killsay.speed", "Killsay / Deathsay Delay", 0, 0, 5)
 
+--[[
 local enable_clantags = gui.Checkbox(left_tab2, "enable.clantags", "Enable Premade Clantags", false)
 local clantag_mode = gui.Combobox(left_tab2, "clantag.mode", "Select clantag", "Sussy Baka", "UwU Rawr xD!", "Sorry Not Sorry", "No Lives Matter", "EZFrags.co.uk")
 local set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', mem.FindPattern("engine.dll", "53 56 57 8B DA 8B F9 FF 15"))
 local clantagset = 0
+--]]
 
 local EngineRadar = gui.Checkbox(left_tab3, "engine.radar", "Engine Radar", true)
 local ForceCrosshair = gui.Checkbox(left_tab3, "force.crosshair", "Force Crosshair", true)
@@ -410,7 +412,7 @@ callbacks.Register("DispatchUserMessage", function(msg)
                     local index = v:GetIndex()
                     local rank_index = entities.GetPlayerResources():GetPropInt("m_iCompetitiveRanking", index)
                     local wins = entities.GetPlayerResources():GetPropInt("m_iCompetitiveWins", index)
-                    local rank = ranks[rank_index] or "Unranked"
+                    local rank = ranks[rank_index] or "no rank"
                     if ranks_mode:GetValue() == 0 then 
                         timer.Create("message_delay", 0.7, i, function()
                             client.ChatTeamSay(v:GetName() .. " has " .. wins .. " wins " .. "(" .. rank .. ")")
@@ -501,7 +503,7 @@ local function for_throwsay(e)
 	end
 end
 
-
+--[[
 --ClanTags
 local ClanTags = {
 	['Sussy Baka'] = {
@@ -716,6 +718,7 @@ local function for_clantags()
 	old_time = curtime
 	clantagset = 1
 end
+--]]
 
 -- KillSays
 local KillSays = {
@@ -970,7 +973,7 @@ client.AllowListener('player_death')
 client.AllowListener('grenade_thrown')
 callbacks.Register('FireGameEvent', for_chatsay)
 callbacks.Register('FireGameEvent', for_throwsay)
-callbacks.Register('Draw', for_clantags)
+--callbacks.Register('Draw', for_clantags)
 callbacks.Register('CreateMove', CrosshairRecoil)
 callbacks.Register("Draw", UnlockInventory)
 callbacks.Register("Unload", OnUnload)
