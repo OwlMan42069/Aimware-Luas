@@ -2,7 +2,7 @@
 local SCRIPT_FILE_NAME = GetScriptName();
 local SCRIPT_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Hentai%20Killsay%20Deathsay.lua";
 local VERSION_FILE_ADDR = "https://raw.githubusercontent.com/OwlMan42069/Aimware-Luas/main/Versions/Hentai%20Killsay%20Deathsay%20Version.txt";
-local VERSION_NUMBER = "2.8";
+local VERSION_NUMBER = "2.9";
 local version_check_done = false;
 local update_downloaded = false;
 local update_available = false;
@@ -85,22 +85,14 @@ local misc_ref = gui.Reference("Misc")
 local tab = gui.Tab(misc_ref, "RetardAlert", ("ThighHighs.club v" .. VERSION_NUMBER))
 
 local left_tab = gui.Groupbox(tab, "Killsay / Deathsay", 10, 15, 310, 400)
---local left_tab2 = gui.Groupbox(tab, "Clantags", 10, 210, 310, 400)
 local left_tab3 = gui.Groupbox(tab, "Misc", 10, 210, 310, 400)
 local right_tab = gui.Groupbox(tab, "Game-Chat", 325, 15, 305, 400)
 
-local enable_killsays = gui.Checkbox(left_tab, "enable.killsays", "Enable Killsay Deathsay", true)
-local killsay_mode = gui.Combobox(left_tab, "killsay.mode", "Select Killsay Mode", "Hentai", "Lewd", "Apologetic", "Edgy", "EZfrags", "AFK")
+local enable_killsays = gui.Checkbox(left_tab, "enable.killsays", "Enable Killsay Deathsay", false)
+local killsay_mode = gui.Combobox(left_tab, "killsay.mode", "Select Killsay Mode", "Apologetic", "Lewd", "Edgy", "Hentai", "EZfrags", "AFK")
 local killsay_speed = gui.Slider(left_tab, "killsay.speed", "Killsay / Deathsay Delay", 0, 0, 5)
 
---[[
-local enable_clantags = gui.Checkbox(left_tab2, "enable.clantags", "Enable Premade Clantags", false)
-local clantag_mode = gui.Combobox(left_tab2, "clantag.mode", "Select clantag", "Sussy Baka", "UwU Rawr xD!", "Sorry Not Sorry", "No Lives Matter", "EZFrags.co.uk")
-local set_clantag = ffi.cast('int(__fastcall*)(const char*, const char*)', mem.FindPattern("engine.dll", "53 56 57 8B DA 8B F9 FF 15"))
-local clantagset = 0
---]]
-
-local EngineRadar = gui.Checkbox(left_tab3, "engine.radar", "Engine Radar", true)
+local EngineRadar = gui.Checkbox(left_tab3, "engine.radar", "Engine Radar", false)
 local ForceCrosshair = gui.Checkbox(left_tab3, "force.crosshair", "Force Crosshair", true)
 local RecoilCrosshair = gui.Checkbox(left_tab3, "recoil.crosshair", "Recoil Crosshair", false)
 
@@ -114,7 +106,7 @@ local enable_coin_flip = gui.Checkbox(chat_commands, "enable.flip", "!flip", tru
 local enable_anime = gui.Checkbox(chat_commands, "enable.anime", "!anime", true)
 local ranks_mode = gui.Combobox(right_tab, "ranks.mode", "Select Chat Mode (Ranks)", "Team Chat", "All Chat")
 
-local enable_throwsay = gui.Checkbox(right_tab, "enable.throwsay", "Enable Grenade Throwsay", true)
+local enable_throwsay = gui.Checkbox(right_tab, "enable.throwsay", "Enable Grenade Throwsay", false)
 local grenade_throwsay = gui.Multibox(right_tab, "Select Grenades")
 local enable_hegrenade = gui.Checkbox(grenade_throwsay, "enable.hegrenade", "HE Grenade", true)
 local enable_flashbang = gui.Checkbox(grenade_throwsay, "enable.flashbang", "Flashbang", true)
@@ -475,6 +467,7 @@ local ThrowSays = {
 	},
 }
 
+
 local function for_throwsay(e)
 	if not enable_throwsay:GetValue() then
 		return
@@ -503,222 +496,6 @@ local function for_throwsay(e)
 	end
 end
 
---[[
---ClanTags
-local ClanTags = {
-	['Sussy Baka'] = {
-		"                  ",
-		"S                 ",
-		"S^                ",
-		"Su                ",
-		"Su|               ",
-		"Su                ",
-		"Sus               ",
-		"Suss              ",
-		"Suss(>ω<)         ",
-		"Sussy             ",
-		"Sussy |           ",
-		"Sussy             ",
-		"Sussy B           ",
-		"Sussy B@          ",
-		"Sussy Ba          ",
-		"Sussy Ba(>ω<)     ",
-		"Sussy Bak         ",
-		"Sussy Baka        ",
-		"Sussy Baka|       ",
-		"Sussy Baka        ",
-		"Sussy Baka|       ",
-		"Sussy Baka        ",
-		"Sussy Baka|       ",
-		"Sussy Baka        ",
-		"Sussy Bak         ",
-		"Sussy Ba^         ",
-		"Sussy Ba          ",
-		"Sussy B@          ",
-		"Sussy B           ",
-		"Sussy |           ",
-		"Sussy             ",
-		"Sussy |           ",
-		"Sussy             ",
-		"Sussy|            ",
-		"Sussy             ",
-		"Suss(>ω<)         ",
-		"Suss              ",
-		"Sus|              ",
-		"Sus               ",
-		"Su                ",
-		"S^                ",
-		"S|                ",
-		"S                 ",
-		"|                 "
-	},
-
-	['UwU Rawr xD!'] = {
-		"                  ",
-		"U                 ",
-		"Uw                ",
-		"UwU               ",
-		"(>ω<)             ",
-		"UwU R             ",
-		"UwU Ra            ",
-		"UwU Raw           ",
-		"UwU Rawr          ",
-		"UwU Rawr x        ",
-		"UwU Rawr xD       ",
-		"UwU Rawr xD!      ",
-		"UwU Rawr xD!      ",
-		"UwU Rawr xD!      ",
-		"UwU Rawr xD!      ",
-		"UwU Rawr xD!      ",
-		"UwU Rawr xD       ",
-		"UwU Rawr x        ",
-		"UwU Rawr          ",
-		"UwU Raw           ",
-		"UwU Ra            ",
-		"UwU R             ",
-		"(>ω<)             ",
-		"UwU               ",
-		"Uw                ",
-		"U                 ",
-		"                  ",
-		"                  "
-	},
-
-	['Sorry Not Sorry'] = {
-		"                  ",
-		"$                 ",
-		"S                 ",
-		"So                ",
-		"Sor               ",
-		"Sorr              ",
-		"Sorry             ",
-		"Sorry N           ",
-		"Sorry No          ",
-		"Sorry No^         ",
-		"Sorry Not         ",
-		"Sorry Not $       ",
-		"Sorry Not S@      ",
-		"Sorry Not So      ",
-		"Sorry Not Sor     ",
-		"Sorry Not Sorr    ",
-		"Sorry Not Sorr^   ",
-		"Sorry Not Sorry   ",
-		"Sorry Not Sorry   ",
-		"$@rry Not $@rry   ",
-		"Sorry Not Sorry   ",
-		"Sorry Not Sorry   ",
-		"Sorry Not Sorr^   ",
-		"Sorry Not Sorr    ",
-		"Sorry Not Sor     ",
-		"Sorry Not So      ",
-		"Sorry Not S@      ",
-		"Sorry Not $       ",
-		"Sorry Not         ",
-		"Sorry No^         ",
-		"Sorry No          ",
-		"Sorry N           ",
-		"Sorry             ",
-		"Sorr              ",
-		"Sor               ",
-		"So                ",
-		"S                 ",
-		"$                 ",
-		"                  "
-	},
-
-	['No Lives Matter'] = {
-		"                  ",
-		"N                 ",
-		"No                ",
-		"No L              ",
-		"No Li             ",
-		"No Liv            ",
-		"No Live           ",
-		"No Lives          ",
-		"No Lives M        ",
-		"No Lives Ma       ",
-		"No Lives Mat      ",
-		"No Lives Matt     ",
-		"No Lives Matte    ",
-		"No Lives Matter   ",
-		"No Lives Matter   ",
-		"No Lives Matter   ",
-		"No Lives Matter   ",
-		"o Lives Matter    ",
-		"Lives Matter      ",
-		"ives Matter       ",
-		"ves Matter        ",
-		"es Matter         ",
-		"s Matter          ",
-		"Matter            ",
-		"atter             ",
-		"tter              ",
-		"ter               ",
-		"er                ",
-		"r                 ",
-		"                  "
-	},
-
-	['EZFrags.co.uk'] = {
-		"                  ",
-		"E                 ",
-		"EZ                ",
-		"EZf               ",
-		"EZfr              ",
-		"EZfra             ",
-		"EZfrag            ",
-		"EZfrags           ",
-		"EZfrags.          ",
-		"EZfrags.c         ",
-		"EZfrags.co        ",
-		"EZfrags.co.       ",
-		"EZfrags.co.u      ",
-		"EZfrags.co.uk     ",
-		"EZfrags.co.uk     ",
-		"EZfrags.co.uk     ",
-		"EZfrags.co.uk     ",
-		"EZfrags.co.uk     ",
-		"EZfrags.co.u      ",
-		"EZfrags.co.       ",
-		"EZfrags.co.       ",
-		"EZfrags.co        ",
-		"EZfrags.c         ",
-		"EZfrags.          ",
-		"EZfrags           ",
-		"EZfrag            ",
-		"EZfra             ",
-		"EZfr              ",
-		"EZf               ",
-		"EZ                ",
-		"E                 ",
-		"                  "
-	},
-}
-
-
-local function for_clantags()
-	if not enable_clantags:GetValue() then
-		if clantagset == 1 then
-			set_clantag("", "")
-			clantagset = 0
-		end
-
-		return
-	end
-
-	local mode = clantag_mode:GetString()
-	local tag = ClanTags[mode]
-	local curtime = math.floor(globals.CurTime() * 2.3)
-
-	if old_time ~= curtime then
-		local t = tag[curtime % #tag+1]
-		set_clantag(t, t)
-	end
-
-	old_time = curtime
-	clantagset = 1
-end
---]]
 
 -- KillSays
 local KillSays = {
@@ -973,7 +750,6 @@ client.AllowListener('player_death')
 client.AllowListener('grenade_thrown')
 callbacks.Register('FireGameEvent', for_chatsay)
 callbacks.Register('FireGameEvent', for_throwsay)
---callbacks.Register('Draw', for_clantags)
 callbacks.Register('CreateMove', CrosshairRecoil)
 callbacks.Register("Draw", UnlockInventory)
 callbacks.Register("Unload", OnUnload)
